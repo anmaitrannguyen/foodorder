@@ -1,0 +1,58 @@
+<!-- Generated template for the SignUpComponent component -->
+
+<ion-list>
+
+  <ion-item>
+    <ion-label fixed>Email</ion-label>
+    <ion-input type="text" value="" [(ngModel)]="email"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label fixed>Password</ion-label>
+    <ion-input type="password" [(ngModel)]="password"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label fixed>Confirm Password</ion-label>
+    <ion-input type="password" [(ngModel)]="confirmPass"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label fixed>Full Name</ion-label>
+    <ion-input type="text" [(ngModel)]="fullName"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label fixed>Phone Number</ion-label>
+    <ion-input type="text" [(ngModel)]="phoneNumber"></ion-input>
+  </ion-item>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>Team</ion-label>
+      <ion-select [(ngModel)]="team">
+        <ion-option value="FE">FE</ion-option>
+        <ion-option value="Java">Java</ion-option>
+        <ion-option value="Php">Php</ion-option>
+        <ion-option value=".NET">.NET</ion-option>
+        <ion-option value="QC">QC</ion-option>
+        <ion-option value="HR">HRS</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>Location</ion-label>
+      <ion-select [(ngModel)]="location">
+        <ion-option value="3">Floor 3</ion-option>
+        <ion-option value="10">Floor 10</ion-option>
+        <ion-option value="globe">Globe</ion-option>
+        <ion-option value="16">Floor 16</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <button ion-button (click)="signUp()">Sign up</button>
+
+</ion-list>

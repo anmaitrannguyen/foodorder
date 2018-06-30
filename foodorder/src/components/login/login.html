@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Floating Labels</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Email</ion-label>
+        <ion-input type="text" value="" [(ngModel)]="email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Password</ion-label>
+        <ion-input type="password" value=""  [(ngModel)]="password"></ion-input>
+      </ion-item>
+    </ion-list>
+    <div padding>
+      <button ion-button color="primary" block (click)="login()">Sign In</button>
+      <button ion-button clear block>Forgot password</button>
+    </div>
+</ion-content>
