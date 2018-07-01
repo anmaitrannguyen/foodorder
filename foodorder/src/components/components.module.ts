@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
-import { LoginComponent } from './login/login';
-import { SignUpComponent } from './sign-up/sign-up';
+import { ResetPasswordComponent } from './reset-password/reset-password';
+import { SignOutComponent } from './sign-out/sign-out';
 @NgModule({
-	declarations: [LoginComponent,
-    SignUpComponent],
+	declarations: [ResetPasswordComponent,
+    SignOutComponent],
 	imports: [],
-	exports: [LoginComponent,
-    SignUpComponent]
+	exports: [ResetPasswordComponent,
+    SignOutComponent]
 })
 export class ComponentsModule {}

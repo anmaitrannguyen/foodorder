@@ -9,9 +9,10 @@ import { HomePage } from '../pages/home/home';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { LoginComponent } from '../components/login/login';
-import { SignUpComponent } from '../components/sign-up/sign-up';
 import { FirebaseProvider } from '../providers/firebase/firebase';
+import { ResetPasswordComponent } from '../components/reset-password/reset-password';
+import { LoginPage } from '../pages/login/login';
+import { SignOutComponent } from '../components/sign-out/sign-out';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCMbCyfvJjjEv-cPZMiIHMqiV2Sov4ChU8",
@@ -26,8 +27,9 @@ const firebaseConfig = {
   declarations: [
     MyApp,
     HomePage,
-    LoginComponent,
-    SignUpComponent,
+    ResetPasswordComponent,
+    LoginPage,
+    SignOutComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,6 +42,8 @@ const firebaseConfig = {
   entryComponents: [
     MyApp,
     HomePage,
+    ResetPasswordComponent,
+    LoginPage,
   ],
   providers: [
     StatusBar,

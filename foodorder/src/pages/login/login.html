@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Login</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <div class="logo">
+    <div class="logo__img">
+        <img src="../../assets/imgs/logo.jpg"/>
+    </div>
+  </div>
+  <form [formGroup]="loginForm" (ngSubmit)="login()" [ngClass]="{'form-invalid': invalid}">
+      <ion-item>
+        <ion-label floating>Email</ion-label>
+        <ion-input type="text" value="" formControlName="email"></ion-input>
+        
+      </ion-item>
+      <p class="item-md danger" *ngIf="loginForm.controls['email'].errors && loginForm.controls['email'].dirty" >Email is not valid.</p>
+      <ion-item>
+        <ion-label floating>Password</ion-label>
+        <ion-input type="password" value="" formControlName="password"></ion-input>
+      </ion-item>
+    <div padding>
+      <button ion-button color="primary" block type="submit">Sign In</button>
+    </div>
+  </form>
+  <button ion-button clear block (click)="forgotPass()">Forgot password</button>
+</ion-content>
+

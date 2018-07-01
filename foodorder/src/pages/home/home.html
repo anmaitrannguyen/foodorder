@@ -1,1 +1,12 @@
-<login></login>
+<ion-header>
+  <ion-navbar>
+    <ion-title>Home page</ion-title>
+    <ion-buttons end>
+      <sign-out></sign-out>
+      
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <div *ngIf="user">Hello, {{user.displayName}}</div>
+</ion-content>

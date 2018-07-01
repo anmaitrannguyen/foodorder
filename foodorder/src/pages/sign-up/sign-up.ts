@@ -1,19 +1,20 @@
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms'
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FirebaseProvider } from '../../providers/firebase/firebase';
 
 /**
- * Generated class for the SignUpComponent component.
+ * Generated class for the SignUpPage page.
  *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
  */
-@Component({
-  selector: 'sign-up',
-  templateUrl: 'sign-up.html'
-})
-export class SignUpComponent {
 
+@IonicPage()
+@Component({
+  selector: 'page-sign-up',
+  templateUrl: 'sign-up.html',
+})
+export class SignUpPage {
   // email, password, confirm password, fullname, team, location
   email: string;
   password: string;
@@ -23,8 +24,11 @@ export class SignUpComponent {
   location: string;
   phoneNumber: string;
 
-  constructor(private firebaseProvider: FirebaseProvider) {
-    
+  constructor(public navCtrl: NavController, public navParams: NavParams, private firebaseProvider: FirebaseProvider) {
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad SignUpPage');
   }
 
   async signUp() {
