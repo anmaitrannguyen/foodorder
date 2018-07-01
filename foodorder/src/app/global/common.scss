@@ -1,0 +1,70 @@
+.menu-content-open {
+  .ion-page {
+    &.show-page { opacity: .3; }
+  }
+}
+.header {
+  &.header-transparent {
+    .toolbar {
+      &-background { background-color: transparent; }
+    }
+    .back-button {
+      &-icon { color: color($colors, white); }
+    }
+  }
+  &.header-pink {
+    .toolbar {
+      &-background { background-color: color($colors, pink-2); }
+    }
+    .back-button { color: color($colors, white); }
+  }
+  &.header-text-white {
+    .toolbar {
+      &-title { color: color($colors, white); }
+    }
+    .back-button {
+      &-icon { color: color($colors, pink-1); }
+    }
+  }
+  &:after {
+    content: none !important;
+  }
+  .toolbar {
+    &-background {
+      border: 0 !important;
+    }
+    &-title {
+      font-weight: 400;
+      font-size: 2rem;
+      color: color($colors, white);
+      &-ios { text-align: center; }
+    }
+  }
+  .back-button {
+    min-width: 0;
+    margin: 0;
+    padding: 0 8px;
+    // &-icon {
+    //   padding: 0;
+    //   font-size: 2.4rem;
+    //   &:before {
+    //     content: '\e901';
+    //   }
+    // }
+    &-text {
+      display: none;
+    }
+  }
+}
+
+.btn-pink {
+  background-color: color($colors, pink-1) !important;
+  color: color($colors, white) !important;
+}
+
+.group-footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}

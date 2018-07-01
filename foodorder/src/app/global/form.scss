@@ -1,0 +1,57 @@
+.form-custom {
+  width: 100%;
+  .full-width {
+    width: 100%;
+  }
+  .group-btn {
+    max-width: 40rem;
+    margin: 3rem auto;
+  }
+  .mat-button {
+    text-transform: uppercase;
+    width: 100%;
+  }
+  .mat-form-field {
+    margin-bottom: .5rem;
+    &.mat-focused {
+      &.mat-primary {
+        .mat-select-arrow { color: color($colors, pink-3) }
+      }
+      .mat-form-field-label { color: color($colors, pink-3); }
+      .mat-form-field-ripple { background-color: color($colors, pink-3); }
+    }
+    &-label {
+      font-size: 1.6rem;
+      top: 1.5em;
+      &-wrapper {
+        top: -1.5em;
+        padding-top: 1.5em;
+      }
+    }
+    &-infix {
+      padding: 1rem 0;
+    }
+    .mat-select {
+      &-value {
+        font-size: 1.6rem;
+      }
+    }
+    .mat-input {
+      &-suffix {
+        .mat-icon {
+          font-size: 1.8rem;
+          color: color($colors, pink-1);
+        }
+      }
+      &-element {
+        font-size: 1.6rem;
+      }
+    }
+  }
+}
+
+.mat-select-panel {
+  .mat-select-content {
+    .mat-option { font-size: 1.4rem; }
+  }
+}

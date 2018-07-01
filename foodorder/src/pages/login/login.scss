@@ -1,0 +1,18 @@
+page-login {
+  .wrap-auth {
+    padding-bottom: 3.6rem;
+  }
+  .group-header {
+    margin-bottom: 5rem;
+  }
+  .group-footer {
+    .inner {
+      display: flex;
+      justify-content: space-between;
+    }
+    .mat-button {
+      padding: 0;
+      min-width: 0;
+    }
+  }
+}
