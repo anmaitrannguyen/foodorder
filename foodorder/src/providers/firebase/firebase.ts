@@ -67,16 +67,8 @@ export class FirebaseProvider {
    await this.afAuth.auth.signOut();
   }
 
-  getCurrentUser = async () => {
-    await this.afAuth.auth.onAuthStateChanged((user) => {
-      if (user) {
-        return {
-          displayName: user.displayName,
-          email: user.email,
-        };
-      } else {
-        return null;
-      }
-    });
+  getCurrentUser = () => {
+    return this.afAuth.authState;
+    // return this.afAuth.auth.onAuthStateChanged;
   }
 }
