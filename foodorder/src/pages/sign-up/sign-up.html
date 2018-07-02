@@ -1,58 +1,83 @@
 <!-- Generated template for the SignUpPage page -->
-
-<ion-list>
-
-  <ion-item>
-    <ion-label fixed>Email</ion-label>
-    <ion-input type="text" value="" [(ngModel)]="email"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label fixed>Password</ion-label>
-    <ion-input type="password" [(ngModel)]="password"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label fixed>Confirm Password</ion-label>
-    <ion-input type="password" [(ngModel)]="confirmPass"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label fixed>Full Name</ion-label>
-    <ion-input type="text" [(ngModel)]="fullName"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label fixed>Phone Number</ion-label>
-    <ion-input type="text" [(ngModel)]="phoneNumber"></ion-input>
-  </ion-item>
-
-  <ion-list>
+<ion-header>
+  <ion-navbar>
+    <ion-title>Sign Up</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <form [formGroup]="signUpForm" (ngSubmit)="signUp()" [ngClass]="{'form-invalid': invalid}">
+    <ion-list>
+      <div class="form-group"
+        [ngClass]="{'form-group__invalid': signUpForm.controls['email'].errors && signUpForm.controls['email'].dirty}">
+        <ion-item>
+          <ion-label floating>Email</ion-label>
+          <ion-input type="text" value="" formControlName="email"></ion-input>
+        </ion-item>
+        <p class="danger form-group__error-message" 
+          *ngIf="signUpForm.controls['email'].errors && signUpForm.controls['email'].dirty" >Email is not valid.</p>
+      </div>
+  
+      <div class="form-group"
+        [ngClass]="{'form-group__invalid': signUpForm.controls['password'].errors && signUpForm.controls['password'].dirty}">
+        <ion-item>
+          <ion-label floating>Password</ion-label>
+          <ion-input type="password" value="" formControlName="password"></ion-input>
+        </ion-item>
+        <p class="danger form-group__error-message" 
+          *ngIf="signUpForm.controls['password'].errors && signUpForm.controls['password'].dirty" >Password invalid.</p>
+      </div>
+  
+      <div class="form-group"
+        [ngClass]="{'form-group__invalid': signUpForm.controls['confirmPass'].errors && signUpForm.controls['confirmPass'].dirty}">
+        <ion-item>
+          <ion-label floating>Confirm Password</ion-label>
+          <ion-input type="password" value="" formControlName="confirmPass"></ion-input>
+        </ion-item>
+        <p class="danger form-group__error-message" 
+          *ngIf="signUpForm.controls['confirmPass'].errors && signUpForm.controls['confirmPass'].dirty" >Confirm password invalid.</p>
+      </div>
+  
+      <div class="form-group"
+        [ngClass]="{'form-group__invalid': signUpForm.controls['fullName'].errors && signUpForm.controls['fullName'].dirty}">
+        <ion-item>
+          <ion-label floating>Full Name</ion-label>
+          <ion-input type="text" value="" formControlName="fullName"></ion-input>
+        </ion-item>
+        <p class="danger form-group__error-message" 
+          *ngIf="signUpForm.controls['fullName'].errors && signUpForm.controls['fullName'].dirty" >Confirm password invalid.</p>
+      </div>
+  
+      <div class="form-group"
+        [ngClass]="{'form-group__invalid': signUpForm.controls['phoneNumber'].errors && signUpForm.controls['phoneNumber'].dirty}">
+        <ion-item>
+          <ion-label floating>Phone Number</ion-label>
+          <ion-input type="text" value="" formControlName="phoneNumber"></ion-input>
+        </ion-item>
+        <p class="danger form-group__error-message" 
+          *ngIf="signUpForm.controls['phoneNumber'].errors && signUpForm.controls['phoneNumber'].dirty" >Confirm password invalid.</p>
+      </div>
+  
     <ion-item>
-      <ion-label>Team</ion-label>
-      <ion-select [(ngModel)]="team">
-        <ion-option value="FE">FE</ion-option>
-        <ion-option value="Java">Java</ion-option>
-        <ion-option value="Php">Php</ion-option>
-        <ion-option value=".NET">.NET</ion-option>
-        <ion-option value="QC">QC</ion-option>
-        <ion-option value="HR">HRS</ion-option>
-      </ion-select>
-    </ion-item>
-  </ion-list>
-
-  <ion-list>
-    <ion-item>
-      <ion-label>Location</ion-label>
-      <ion-select [(ngModel)]="location">
-        <ion-option value="3">Floor 3</ion-option>
-        <ion-option value="10">Floor 10</ion-option>
-        <ion-option value="globe">Globe</ion-option>
-        <ion-option value="16">Floor 16</ion-option>
-      </ion-select>
-    </ion-item>
-  </ion-list>
-
-  <button ion-button (click)="signUp()">Sign up</button>
-
-</ion-list>
+        <ion-label>Team</ion-label>
+        <ion-select formControlName="team">
+          <ion-option value="FE">FE</ion-option>
+          <ion-option value="Java">Java</ion-option>
+          <ion-option value="Php">Php</ion-option>
+          <ion-option value=".NET">.NET</ion-option>
+          <ion-option value="QC">QC</ion-option>
+          <ion-option value="HR">HRS</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Location</ion-label>
+        <ion-select formControlName="location">
+          <ion-option value="3">Floor 3</ion-option>
+          <ion-option value="10">Floor 10</ion-option>
+          <ion-option value="globe">Globe</ion-option>
+          <ion-option value="16">Floor 16</ion-option>
+        </ion-select>
+      </ion-item>
+      <button ion-button (click)="signUp()">Sign up</button>
+    </ion-list>
+  </form>
+</ion-content>

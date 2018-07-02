@@ -16,6 +16,8 @@ import { ToastController, NavController } from 'ionic-angular';
 export class ResetPasswordComponent {
 
   resetForm: FormGroup;
+  message: string;
+  isValid: boolean;
 
   constructor(private formBuilder: FormBuilder,
     private firebaseProvider: FirebaseProvider,
@@ -31,9 +33,14 @@ export class ResetPasswordComponent {
     if(this.resetForm.valid)
     {
       const result = this.firebaseProvider.forgotPassWord(this.resetForm.value.email);
-      if(!result) {
-        this.navCtl.pop();
-      }
+      
+      result.then((res) => {
+        this.isValid = true;
+        this.message = 'A link has been send to your email';
+      }).catch((e) => {
+        this.message = e.message;
+        this.isValid = false;
+      })
     } 
 
   }

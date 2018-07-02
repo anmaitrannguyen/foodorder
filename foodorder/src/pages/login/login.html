@@ -9,21 +9,31 @@
         <img src="../../assets/imgs/logo.jpg"/>
     </div>
   </div>
-  <form [formGroup]="loginForm" (ngSubmit)="login()" [ngClass]="{'form-invalid': invalid}">
-      <ion-item>
-        <ion-label floating>Email</ion-label>
-        <ion-input type="text" value="" formControlName="email"></ion-input>
-        
-      </ion-item>
-      <p class="item-md danger" *ngIf="loginForm.controls['email'].errors && loginForm.controls['email'].dirty" >Email is not valid.</p>
-      <ion-item>
-        <ion-label floating>Password</ion-label>
-        <ion-input type="password" value="" formControlName="password"></ion-input>
-      </ion-item>
+  <p class="message" *ngIf="message">{{message}}</p>
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <div class="form-group"
+       [ngClass]="{'form-group__invalid': loginForm.controls['email'].errors && loginForm.controls['email'].dirty}">
+        <ion-item>
+          <ion-label floating>Email</ion-label>
+          <ion-input type="text" value="" formControlName="email"></ion-input>
+        </ion-item>
+        <p class="danger form-group__error-message" 
+          *ngIf="loginForm.controls['email'].errors && loginForm.controls['email'].dirty" >Email is not valid.</p>
+      </div>
+      <div class="form-group" 
+      [ngClass]="{'form-group__invalid': loginForm.controls['email'].errors && loginForm.controls['email'].dirty}">
+        <ion-item>
+          <ion-label floating>Password</ion-label>
+          <ion-input type="password" value="" formControlName="password"></ion-input>
+        </ion-item>
+        <p class="danger form-group__error-message"
+         *ngIf="loginForm.controls['password'].errors && loginForm.controls['password'].dirty" >Password is not valid.</p>
+      </div>
     <div padding>
       <button ion-button color="primary" block type="submit">Sign In</button>
     </div>
   </form>
-  <button ion-button clear block (click)="forgotPass()">Forgot password</button>
+  <button ion-button clear block (click)="forgotPass()">Forgot Password</button>
+  <button ion-button clear block (click)="signUp()">Sign Up</button>
 </ion-content>
 

@@ -23,44 +23,37 @@ export class FirebaseProvider {
 
   createFirebaseAccount = async (account: Object) => {
     //create firebase user
-    const cred = await this.afAuth.auth.createUserWithEmailAndPassword(account['email'], account['password']);
-    const userCollection = this.firebaseDB.list('/users');
+    return this.afAuth.auth.createUserWithEmailAndPassword(account['email'], account['password']);
 
-    //update firebase user profile
-    await cred.user.updateProfile({
+    
+  }
+
+  updateProfile = (account, user) => {
+    user.updateProfile({
       displayName: account['fullName'],
       photoURL: null,
     });
+  }
 
-    //create custom user with firebase user id
-    await userCollection.set(cred.user.uid, 
+  //create custom user with firebase user id
+  createCustomUser = (uid, account) => {
+    const userCollection = this.firebaseDB.list('/users');
+
+    return userCollection.set(uid, 
       {
         team: account['team'], 
         location: account['location'], 
         phoneNumber: account['phoneNumber'],
       });
-
-    return cred.user;
   }
-
-  authUser = async (account: Object) => {
-    try {
-      const cred = await this.afAuth.auth.signInWithEmailAndPassword(account['email'], account['password']);
-      return {user: cred.user, message: ""};
-    } catch (e) {
-      console.log(e);
-      return {user: '', message: e.message}
-    }
+  authUser = (account: Object) => {
+    return this.afAuth.auth.signInWithEmailAndPassword(account['email'], account['password']);
   }
   
-  forgotPassWord = async (email: string) => {
+  forgotPassWord = (email: string) => {
     // let user;
-    try {
-      const cred = await this.afAuth.auth.sendPasswordResetEmail(email);
-      return "";
-    } catch (e){
-      return {message: e.message}
-    }
+    return this.afAuth.auth.sendPasswordResetEmail(email);
+      
   }
 
   signOut = async () => {

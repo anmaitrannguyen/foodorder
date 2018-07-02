@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { FirebaseProvider } from '../../providers/firebase/firebase';
 import { ResetPasswordComponent } from '../../components/reset-password/reset-password';
 import { HomePage } from '../home/home';
+import { SignUpPage } from '../sign-up/sign-up';
 
 /**
  * Generated class for the LoginPage page.
@@ -44,19 +45,22 @@ export class LoginPage {
     if(this.loginForm.valid) {
       this.invalid = false;
       const result = this.firebaseProvider.authUser({...loginData});
-      
-      if(result && result.message) {
-        this.message = result.message;
-      } else {
-        this.message = '';
-        this.navCtrl.push(HomePage);
-      }
+
+      result.then((res) => {
+        //goto Home page
+        this.navCtrl.setRoot(HomePage);
+      }).catch((e) => {
+        this.message = e.message;
+      });
     } else {
       this.invalid = true;
-
     }
   }
   forgotPass() {
     this.navCtrl.push(ResetPasswordComponent);
+  }
+
+  signUp() {
+    this.navCtrl.push(SignUpPage);
   }
 }

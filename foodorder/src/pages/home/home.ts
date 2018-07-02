@@ -11,7 +11,6 @@ export class HomePage {
   user: object;
   constructor(public navCtrl: NavController, private firebaseProvider: FirebaseProvider) {
     // this.afAuth.auth.signOut(); 
-    console.log('user');
     this.firebaseProvider.getCurrentUser().subscribe((user) => {
       this.user = user;
       if(!user) {
