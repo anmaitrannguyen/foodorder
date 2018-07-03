@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ErrorHandler, NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -11,9 +12,11 @@ import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password';
 import { AngularFireModule } from 'angularfire2';
-// import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AuthProvider } from '../providers/auth/auth';
+
+import { ControlMessagesComponent } from '../components/control-messages/control-messages';
 
 // - Custom layout style
 import { MatIconModule } from "@angular/material/icon";
@@ -45,11 +48,14 @@ const config = {
     HomePage,
     LoginPage,
     SignupPage,
-    ForgotPasswordPage
+    ForgotPasswordPage,
+    ControlMessagesComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
     IonicModule.forRoot(MyApp, {
       backButtonText: '',
       pageTransition: 'ios-transition',
@@ -74,13 +80,15 @@ const config = {
     HomePage,
     LoginPage,
     SignupPage,
-    ForgotPasswordPage
+    ForgotPasswordPage,
+    ControlMessagesComponent
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthProvider
+    AuthProvider,
+    AngularFireAuth
   ]
 })
 export class AppModule {}
