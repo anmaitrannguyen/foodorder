@@ -14,6 +14,7 @@ import { AuthProvider } from '../providers/auth/auth';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { ForgotpassPage } from '../pages/forgotpass/forgotpass';
+import { ListproductPage } from '../pages/listproduct/listproduct';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAP276Ycpd_K-WnndBo2a8e0KgRix9iWVo",
@@ -38,6 +39,7 @@ const firebaseConfig = {
     LoginPage,
 		RegisterPage,
 		ForgotpassPage,
+		ListproductPage,
   ],
   imports: [
     BrowserModule,
@@ -51,6 +53,7 @@ const firebaseConfig = {
     LoginPage,
 		RegisterPage,
 		ForgotpassPage,
+		ListproductPage,
   ],
   providers: [
     StatusBar,

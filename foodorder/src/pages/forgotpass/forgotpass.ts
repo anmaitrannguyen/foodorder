@@ -31,7 +31,7 @@ export class ForgotpassPage {
     const data = this.resetPasswordForm.value;
 
     this.authProvider.resetPasswordWithEmail(data).then(
-      data => this.navCtrl.push(HomePage, {user : data.user}),
+      data => this.navCtrl.push(HomePage, {}),
       error => this.errorMessage = error.message
     );
   }
