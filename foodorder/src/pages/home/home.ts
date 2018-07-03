@@ -1,14 +1,20 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavParams } from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
+  email: string;
 
-  constructor(public navCtrl: NavController) {
-
+  constructor(
+    private navParams: NavParams,
+  ) {
+    const user = this.navParams.get('user');
+    if(user) {
+      this.email = user.email;
+    }
   }
 
 }

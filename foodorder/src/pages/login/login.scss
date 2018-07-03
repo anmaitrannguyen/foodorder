@@ -1,0 +1,19 @@
+page-login {
+  .scroll-content {
+    overflow-y: hidden;
+  }
+
+  .logo-container {
+    width: 30%;
+    margin: 0 auto;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .error {
+    color: red;
+    margin: 10px 0;
+  }
+}

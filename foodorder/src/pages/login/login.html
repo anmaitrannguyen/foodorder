@@ -1,0 +1,23 @@
+<ion-content padding>
+  <div class="logo-container">
+    <img src="../../assets/imgs/logo-food.png" />
+  </div>
+
+  <form (ngSubmit)="login()" [formGroup]="loginForm">
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Email</ion-label>
+        <ion-input formControlName="email" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Password</ion-label>
+        <ion-input formControlName="password" type="password"></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
+  </form>
+  <button ion-button clear (click)="goToSignUp()">Don't have an account? Click here!</button>
+  <button ion-button block (click)="login()">Sign in</button>
+
+</ion-content>

@@ -1,0 +1,47 @@
+<ion-content padding>
+  <div class="logo-container">
+    <img src="../../assets/imgs/logo-food.png" />
+  </div>
+
+  <form (ngSubmit)="signUp()" [formGroup]="signUpForm">
+    <ion-list>
+      <ion-item>
+        <ion-label>Email</ion-label>
+        <ion-input formControlName="email" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Password</ion-label>
+        <ion-input formControlName="password" type="password"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Confirm Password</ion-label>
+        <ion-input formControlName="password" type="password"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Team</ion-label>
+        <ion-select formControlName="team">
+          <ion-option *ngFor="let team of teamList" [value]="team.key">
+            {{team.value}}
+          </ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Location</ion-label>
+        <ion-select formControlName="location">
+          <ion-option *ngFor="let location of locationList" [value]="location.key">
+            {{location.value}}
+          </ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+
+    <div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
+  </form>
+  <button ion-button clear (click)="goToLogIn()">Have an account? Click here!</button>
+  <button ion-button block (click)="signUp()">Sign up</button>
+
+</ion-content>

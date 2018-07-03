@@ -6,9 +6,13 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
+
+import { AuthProvider } from '../providers/auth/auth';
+import { LoginPage } from '../pages/login/login';
+import { RegisterPage } from '../pages/register/register';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAP276Ycpd_K-WnndBo2a8e0KgRix9iWVo",
@@ -18,27 +22,39 @@ const firebaseConfig = {
   storageBucket: "foodorder-b2fea.appspot.com",
   messagingSenderId: "965861509741"
 };
-
+// const firebaseConfig = {
+//   apiKey: "AIzaSyAPSqLp6YUnRAGxr1evEMRVePY02gfVAT8",
+//   authDomain: "demoionic-aa1ae.firebaseapp.com",
+//   databaseURL: "https://demoionic-aa1ae.firebaseio.com",
+//   projectId: "demoionic-aa1ae",
+//   storageBucket: "demoionic-aa1ae.appspot.com",
+//   messagingSenderId: "219639748603"
+// };
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    LoginPage,
+    RegisterPage,
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    LoginPage,
+    RegisterPage,
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AngularFireAuth,
+    AuthProvider,
   ]
 })
 export class AppModule {}
