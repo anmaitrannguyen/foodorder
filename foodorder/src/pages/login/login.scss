@@ -1,12 +1,10 @@
-page-login {
-  .content {
-    background: url('../../assets/login-bg.jpg') center no-repeat;
+ .content {
+    padding: 0 .6rem;    
+    background-image: linear-gradient(rgba(255, 255, 255, 0.58), rgba(255, 255, 255, 0.38)), 
+    url('../../assets/login-bg.jpg');
   }
-
   
   .item {
     background-color: transparent;
     color: #fff;
   }
-  
-}

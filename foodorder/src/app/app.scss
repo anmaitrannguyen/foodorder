@@ -16,7 +16,7 @@
 // automatically applied to the <body> element in the app.
 
 .logo {
-  margin: 7rem 0 5rem;
+  margin: 7rem 0 0;
   &__img {
     margin: 0 auto;
     width: 15rem;
@@ -74,7 +74,51 @@ img {
 
 .container {
   position: relative;
-  max-width: 768px;
+  max-width: 600px;
   height: 100%;
   margin: 0 auto;
+}
+
+.scroll-content {
+  left: 1.6rem;
+  right: 1.6rem;
+}
+.pull-right {
+  float: right;
+}
+
+.button-md {
+  &--2 {
+    text-transform: initial;
+  }
+  &--light {
+    color: $light;
+  }
+}
+.button {
+  &-inner {
+    .icon {
+      padding: 0 1rem;
+      transform: translateY(-1px);
+      .facebook & {
+        // color: $blue;
+      }
+    }
+    
+  }
+  &.facebook {
+    color: $white;
+    background: $blue
+  }
+  &.google {
+    color: $white;
+    background: $red-1;
+  }
+
+  &--text {
+    color: $white-1;
+    .button {
+      vertical-align: middle;
+    }
+  }
 }

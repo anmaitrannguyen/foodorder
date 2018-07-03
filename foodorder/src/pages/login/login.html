@@ -6,10 +6,10 @@
 <ion-content>
   <div class="logo">
     <div class="logo__img">
-        <img src="../../assets/imgs/logo.jpg"/>
+        <img src="../../assets/imgs/logo-3.png"/>
     </div>
   </div>
-  <p class="message" *ngIf="message">{{message}}</p>
+  <p class="message error" *ngIf="message">{{message}}</p>
   <form [formGroup]="loginForm" (ngSubmit)="login()">
       <div class="form-group"
        [ngClass]="{'form-group__invalid': loginForm.controls['email'].errors && loginForm.controls['email'].dirty}">
@@ -29,12 +29,29 @@
         <p class="danger form-group__error-message"
          *ngIf="loginForm.controls['password'].errors && loginForm.controls['password'].dirty" >Password is not valid.</p>
       </div>
-    <div padding>
-      <button ion-button color="primary" block type="submit">Sign In</button>
-    </div>
   </form>
-  <button ion-button clear block (click)="loginWithGoogleAccount()">Log</button>
-  <button ion-button clear block (click)="forgotPass()">Forgot Password</button>
-  <button ion-button clear block (click)="signUp()">Sign Up</button>
+  <button class="pull-right button-md--2 button-md--light" ion-button clear (click)="forgotPass()">Forgot Password</button>
+  <button ion-button color="primary" block type="submit" (click)="login()">Log In</button>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6>
+        <button class="button-md--2 facebook" ion-button clear block (click)="loginWithGoogleAccount()">
+          <ion-icon ios="logo-facebook" md="logo-facebook"></ion-icon>
+          Facebook
+        </button>
+      </ion-col>
+      <ion-col col-6>
+        <button class="button-md--2 google" ion-button clear block (click)="loginWithGoogleAccount()">
+          <ion-icon ios="logo-googleplus" md="logo-googleplus"></ion-icon>
+          Google
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+  <div class="button--text">
+    Don't you have an account?
+    <button class="button-md--2" ion-button clear (click)="signUp()">Sign Up</button>
+  </div>
 </ion-content>
 
