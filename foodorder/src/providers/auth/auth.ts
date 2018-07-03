@@ -31,4 +31,11 @@ export class AuthProvider {
     );
   }
 
+  resetPasswordWithEmail(credentials) {
+    console.log('Reset password');
+    return this.angularFireAuth.auth.sendPasswordResetEmail(
+      credentials.email
+    );
+  }
+
 }

@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HomePage } from '../home/home';
 import { RegisterPage } from '../register/register';
 import { AuthProvider } from '../../providers/auth/auth';
+import { ForgotpassPage } from '../forgotpass/forgotpass';
 
 @Component({
   selector: 'page-login',
@@ -40,5 +41,8 @@ export class LoginPage {
   goToSignUp() {
     this.navCtrl.push(RegisterPage);
   }
-
+  
+  goToForgot() {
+    this.navCtrl.push(ForgotpassPage);
+  }
 }
