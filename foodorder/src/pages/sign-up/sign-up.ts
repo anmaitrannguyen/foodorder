@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FirebaseProvider } from '../../providers/firebase/firebase';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the SignUpPage page.
@@ -49,13 +50,17 @@ export class SignUpPage {
   signUp() {
     const account = this.signUpForm.value;
 
+    console.log(account);
+
     const result = this.firebaseProvider.createFirebaseAccount(account);
    
     result.then((res) => {
-      this.firebaseProvider.updateProfile(account, res);
+      this.firebaseProvider.updateProfile(account, res.user);
       this.firebaseProvider.createCustomUser(res.user.uid, account);
       this.firebaseProvider.authUser(account).then((_res) => {
-        this.navCtrl.pop();
+        this.navCtrl.popAll();
+        this.navCtrl.setRoot(HomePage);
+        // console.log(this.navCtrl.getPrevious());
       }).catch ((e) => {
         this.message = e.message;
       });

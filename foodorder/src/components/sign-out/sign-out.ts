@@ -28,7 +28,7 @@ export class SignOutComponent {
 
   showConfirm() {
     const confirm = this.alertCtrl.create({
-      title: 'Use this lightsaber?',
+      title: 'Sign out?',
       message: 'Do you agree to sign out?',
       buttons: [
         {

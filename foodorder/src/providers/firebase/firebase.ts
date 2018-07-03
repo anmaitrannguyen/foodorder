@@ -4,6 +4,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { User } from '../../type';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { ToastController } from 'ionic-angular';
+import { auth } from 'firebase/app';
 
 
 /*
@@ -15,23 +16,24 @@ import { ToastController } from 'ionic-angular';
 @Injectable()
 export class FirebaseProvider {
 
-  constructor(private afAuth: AngularFireAuth,
-     private firebaseDB: AngularFireDatabase,
-     private toastCtrl: ToastController) {
+  constructor(
+    private afAuth: AngularFireAuth,
+    private firebaseDB: AngularFireDatabase,
+    private toastCtrl: ToastController,
+    private firebase: AngularFireDatabase
+  ) {
     console.log('Hello FirebaseProvider Provider');
   }
 
   createFirebaseAccount = async (account: Object) => {
     //create firebase user
     return this.afAuth.auth.createUserWithEmailAndPassword(account['email'], account['password']);
-
-    
   }
 
   updateProfile = (account, user) => {
-    user.updateProfile({
+    return user.updateProfile({
       displayName: account['fullName'],
-      photoURL: null,
+      photoURL: account['photoURL'],
     });
   }
 
@@ -63,5 +65,11 @@ export class FirebaseProvider {
   getCurrentUser = () => {
     return this.afAuth.authState;
     // return this.afAuth.auth.onAuthStateChanged;
+  }
+
+  loginWithGoogleAccount = () => {
+    const provider = new auth.GoogleAuthProvider();
+    
+    return this.afAuth.auth.signInWithPopup(provider);
   }
 }

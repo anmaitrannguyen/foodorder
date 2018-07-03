@@ -35,11 +35,11 @@ export class LoginPage {
     });
   }
 
-  ionViewDidLoad() {
+  ionViewDidLoad = () => {
     console.log('ionViewDidLoad LoginPage');
   }
 
-  login() {
+  login = () => {
     const loginData = this.loginForm.value;
     
     if(this.loginForm.valid) {
@@ -56,11 +56,23 @@ export class LoginPage {
       this.invalid = true;
     }
   }
-  forgotPass() {
+
+  forgotPass = () => {
     this.navCtrl.push(ResetPasswordComponent);
   }
 
-  signUp() {
+  signUp = () => {
     this.navCtrl.push(SignUpPage);
+  }
+
+  loginWithGoogleAccount = () => {
+    this.firebaseProvider.loginWithGoogleAccount().then(
+      (result) => {
+        this.navCtrl.setRoot(HomePage);
+      },
+      (error) => {
+        console.log(error.message);
+      }
+    )
   }
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { FirebaseProvider } from '../../providers/firebase/firebase';
 
@@ -9,7 +9,10 @@ import { FirebaseProvider } from '../../providers/firebase/firebase';
 })
 export class HomePage {
   user: object;
-  constructor(public navCtrl: NavController, private firebaseProvider: FirebaseProvider) {
+  constructor(
+    public navCtrl: NavController, 
+    private firebaseProvider: FirebaseProvider
+  ) {
     // this.afAuth.auth.signOut(); 
     this.firebaseProvider.getCurrentUser().subscribe((user) => {
       this.user = user;

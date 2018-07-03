@@ -66,3 +66,15 @@ img {
     }
   }
 }
+.button {
+  &, &[icon-only] {
+    padding: 0 .5rem;
+  }
+}
+
+.container {
+  position: relative;
+  max-width: 768px;
+  height: 100%;
+  margin: 0 auto;
+}
