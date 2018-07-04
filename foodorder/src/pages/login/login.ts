@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HomePage } from '../home/home';
 import { RegisterPage } from '../register/register';
 import { AuthProvider } from '../../providers/auth/auth';
+import { USER } from './mocks/user';
 
 @Component({
   selector: 'page-login',
@@ -12,6 +13,9 @@ import { AuthProvider } from '../../providers/auth/auth';
 export class LoginPage {
   loginForm: FormGroup;
   errorMessage: string = '';
+
+  email: string = '';
+  password: string = '';
 
   constructor(
     private navCtrl: NavController,
@@ -22,6 +26,10 @@ export class LoginPage {
       email: ['', Validators.compose([Validators.required, Validators.email])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(8)])]
     });
+
+
+    this.email = USER.email;
+    this.password = USER.password;
   }
 
   ionViewDidLoad() {
@@ -32,9 +40,17 @@ export class LoginPage {
     const data = this.loginForm.value;
 
     this.authProvider.signInWithEmail(data).then(
-      data => this.navCtrl.push(HomePage, {user : data.user}),
-      error => this.errorMessage = error.message
+      this.loginSuccess.bind(this),
+      this.loginError.bind(this),
     );
+  }
+
+  loginSuccess({ user }) {
+    this.navCtrl.push(HomePage, { user });
+  }
+
+  loginError({ message }) {
+    this.errorMessage = message;
   }
 
   goToSignUp() {
