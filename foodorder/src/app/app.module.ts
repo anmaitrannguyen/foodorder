@@ -6,23 +6,28 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { LoginPage } from '../pages/login/login';
+import { RegisterPage } from '../pages/register/register';
+
 import { AngularFireModule } from 'angularfire2';
-import { AngularFireAuth } from 'angularfire2/auth';
+// import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAP276Ycpd_K-WnndBo2a8e0KgRix9iWVo",
-  authDomain: "foodorder-b2fea.firebaseapp.com",
-  databaseURL: "https://foodorder-b2fea.firebaseio.com",
-  projectId: "foodorder-b2fea",
-  storageBucket: "foodorder-b2fea.appspot.com",
-  messagingSenderId: "965861509741"
+  apiKey: "AIzaSyBdPosSlNozwq26RSgV84xqP34ZOi-8iXE",
+  authDomain: "food-fc2dc.firebaseapp.com",
+  databaseURL: "https://food-fc2dc.firebaseio.com",
+  projectId: "food-fc2dc",
+  storageBucket: "food-fc2dc.appspot.com",
+  messagingSenderId: "701165046257"
 };
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    LoginPage,
+    RegisterPage
   ],
   imports: [
     BrowserModule,
@@ -33,7 +38,9 @@ const firebaseConfig = {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    LoginPage,
+    RegisterPage
   ],
   providers: [
     StatusBar,
