@@ -6,28 +6,32 @@
 -->
 <ion-header class="header-transparent header-text-white">
   <ion-navbar>
+    <ion-title>Đăng Ký tài khoản</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content class="content-signup content-auth" padding>
   <div class="wrap-auth">
-    <form class="form-custom form-signup">
+    <form class="form-custom form-signup" (ngSubmit)="signup()" [formGroup]="signupForm">
       <mat-form-field class="full-width">
-        <input matInput placeholder="Email">
+        <input matInput placeholder="Email đăng nhập" formControlName="email">
       </mat-form-field>
+      <control-messages [control]="signupForm.controls.email"></control-messages>
       <mat-form-field class="full-width">
-        <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'">
-        <!-- <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon> -->
+        <input matInput placeholder="Mật Khẩu" [type]="hidePW ? 'password' : 'text'" formControlName="password">
+        <mat-icon matSuffix (click)="hidePW = !hidePW" >{{hidePW ? 'visibility' : 'visibility_off'}}</mat-icon>
       </mat-form-field>
+      <control-messages [control]="signupForm.controls.password"></control-messages>
       <mat-form-field class="full-width">
-        <input matInput placeholder="Confirm password" [type]="hide ? 'password' : 'text'">
-        <!-- <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon> -->
+        <input matInput placeholder="Xác nhận mật khẩu" [type]="hideCPW ? 'password' : 'text'"formControlName="confirmPassword">
+        <mat-icon matSuffix (click)="hideCPW = !hideCPW">{{hideCPW ? 'visibility' : 'visibility_off'}}</mat-icon>
       </mat-form-field>
-      <mat-form-field class="full-width">
+      <control-messages [control]="signupForm.controls.confirmPassword"></control-messages>
+      <!-- <mat-form-field class="full-width">
         <input matInput placeholder="Your name">
-      </mat-form-field>
+      </mat-form-field> -->
       <mat-form-field class="full-width">
-        <mat-select placeholder="Choose your team" class="full-width">
+        <mat-select placeholder="Bạn thuộc team nào?" class="full-width" formControlName="team">
           <mat-option value="option">Frontend</mat-option>
           <mat-option value="option">Backend</mat-option>
           <mat-option value="option">Quality Control</mat-option>
@@ -36,7 +40,8 @@
           <mat-option value="option">Hurman Resource</mat-option>
         </mat-select>
       </mat-form-field>
-      <mat-form-field class="full-width">
+      <control-messages [control]="signupForm.controls.team"></control-messages>
+      <!-- <mat-form-field class="full-width">
         <mat-select placeholder="Your Location" class="full-width">
           <mat-option value="option">16th Floor</mat-option>
           <mat-option value="option">15th Floor</mat-option>
@@ -44,9 +49,9 @@
           <mat-option value="option">3rd Floor</mat-option>
           <mat-option value="option">1stA Floor</mat-option>
         </mat-select>
-      </mat-form-field>
+      </mat-form-field> -->
       <div class="group-btn">
-        <button mat-button class="btn-pink">Signup</button>
+        <button mat-button class="btn-pink" type="submit" [disabled]="!signupForm.valid">Đăng ký</button>
       </div>
     </form>
   </div>

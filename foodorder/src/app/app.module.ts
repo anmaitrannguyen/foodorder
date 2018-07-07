@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ErrorHandler, NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -14,6 +15,9 @@ import { AngularFireModule } from 'angularfire2';
 // import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AuthProvider } from '../providers/auth/auth';
+
+import { ValidationService } from '../services/validators';
+import { ValidationControlMessages } from '../services/validator.control-ms';
 
 // - Custom layout style
 import { MatIconModule } from "@angular/material/icon";
@@ -30,13 +34,13 @@ import { MatButtonModule } from '@angular/material/button';
 //   messagingSenderId: "965861509741"
 // };
 
-const config = {
-  apiKey: "AIzaSyDEufLizO0QBe-vpXU93MX_6a-YjWllp_E",
-  authDomain: "food-order-7b345.firebaseapp.com",
-  databaseURL: "https://food-order-7b345.firebaseio.com",
-  projectId: "food-order-7b345",
-  storageBucket: "food-order-7b345.appspot.com",
-  messagingSenderId: "217716187757"
+const firebaseConfig = {
+  apiKey: "AIzaSyDjsXwM16w2gTdxTWvJKp5_4eLEBTtBOTk",
+  authDomain: "fodie-e235e.firebaseapp.com",
+  databaseURL: "https://fodie-e235e.firebaseio.com",
+  projectId: "fodie-e235e",
+  storageBucket: "fodie-e235e.appspot.com",
+  messagingSenderId: "884674800819"
 };
 
 @NgModule({
@@ -45,11 +49,13 @@ const config = {
     HomePage,
     LoginPage,
     SignupPage,
-    ForgotPasswordPage
+    ForgotPasswordPage,
+    ValidationControlMessages
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     IonicModule.forRoot(MyApp, {
       backButtonText: '',
       pageTransition: 'ios-transition',
@@ -61,7 +67,7 @@ const config = {
       }
     }),
     // AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireModule.initializeApp(config),
+    AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     MatIconModule,
     MatInputModule,
@@ -74,13 +80,15 @@ const config = {
     HomePage,
     LoginPage,
     SignupPage,
-    ForgotPasswordPage
+    ForgotPasswordPage,
+    ValidationControlMessages
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthProvider
+    AuthProvider,
+    ValidationService
   ]
 })
 export class AppModule {}

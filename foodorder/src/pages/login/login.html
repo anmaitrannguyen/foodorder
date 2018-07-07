@@ -14,20 +14,20 @@
     </div>
     <form class="form-custom form-login">
       <mat-form-field class="full-width">
-        <input matInput placeholder="Email">
+        <input matInput placeholder="Tên đăng nhập (email)">
       </mat-form-field>
       <mat-form-field class="full-width">
-        <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'">
+        <input matInput placeholder="Mật Khẩu" [type]="hide ? 'password' : 'text'">
         <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
       </mat-form-field>
       <div class="group-btn">
-        <button mat-button class="btn-pink">Login</button>
+        <button mat-button class="btn-pink">Đăng Nhập</button>
       </div>
     </form>
     <div class="group-footer">
       <div class="inner">
-        <button mat-button color="accent" (click)="goForgot()">Forgot your password?</button>
-        <button mat-button color="accent" (click)="goSignup()">Signup</button>
+        <button mat-button color="accent" (click)="goForgot()">Quên mật khẩu?</button>
+        <button mat-button color="accent" (click)="goSignup()">Đăng ký</button>
       </div>
     </div>
   </div>
