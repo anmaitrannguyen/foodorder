@@ -12,7 +12,7 @@
     <div class="group-header">
       <img src="assets/imgs/logo.png" alt="Logo Food Order" />
     </div>
-    <form [formGroup]="loginForm" (submit)="onLogin()" class="form-custom form-login">
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="form-custom form-login">
       <mat-form-field class="full-width">
         <input matInput placeholder="Email" formControlName="email" name="email" id="email">
       </mat-form-field>

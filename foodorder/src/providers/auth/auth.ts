@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 
@@ -12,38 +12,22 @@ import { AngularFireAuth } from 'angularfire2/auth';
 */
 @Injectable()
 export class AuthProvider {
-  private authState: any = null;
 
   constructor(
-    public http: HttpClient,
-    private firebaseAuth: AngularFireAuth
+    private afAuth: AngularFireAuth
   ) {
     console.log('Hello AuthProvider Provider');
   }
 
-  signupAuth(email: string, password: string) {
-    return this.firebaseAuth.auth.createUserWithEmailAndPassword(email, password)
-      .then((user) => {
-        this.authState = user
-      })
-      .catch(error => {
-        console.log(error)
-        throw error
-      });
+  signupAuth(credentials) {
+    return this.afAuth.auth.createUserWithEmailAndPassword(credentials.email, credentials.password);
   }
 
-  loginWithEmail(email: string, password: string) {
-    return this.firebaseAuth.auth.signInWithEmailAndPassword(email, password)
-      .then((user) => {
-        this.authState = user
-      })
-      .catch(error => {
-        console.log(error)
-        throw error
-      });
+  loginAuth(credentials) {
+    return this.afAuth.auth.createUserWithEmailAndPassword(credentials.email, credentials.password)
   }
 
-  signOut(): void {
-    this.firebaseAuth.auth.signOut();
-  }
+  // signOut(): void {
+  //   this.firebaseAuth.auth.signOut();
+  // }
 }

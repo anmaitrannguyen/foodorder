@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -16,7 +17,8 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AuthProvider } from '../providers/auth/auth';
 
-import { ControlMessagesComponent } from '../components/control-messages/control-messages';
+import { ValidationService } from '../services/validators';
+import { ValidationControlMessages } from '../services/validator.control-ms';
 
 // - Custom layout style
 import { MatIconModule } from "@angular/material/icon";
@@ -49,11 +51,12 @@ const config = {
     LoginPage,
     SignupPage,
     ForgotPasswordPage,
-    ControlMessagesComponent
+    ValidationControlMessages
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     IonicModule.forRoot(MyApp, {
@@ -81,14 +84,15 @@ const config = {
     LoginPage,
     SignupPage,
     ForgotPasswordPage,
-    ControlMessagesComponent
+    ValidationControlMessages
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
-    AngularFireAuth
+    AngularFireAuth,
+    ValidationService
   ]
 })
 export class AppModule {}

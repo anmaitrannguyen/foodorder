@@ -4,30 +4,37 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header class="header-transparent header-text-white">
+<ion-header class="header-transparent header-text-pink">
   <ion-navbar>
+    <ion-title>Sign Up</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content class="content-signup content-auth" padding>
   <div class="wrap-auth">
-    <form class="form-custom form-signup">
+    <form class="form-custom form-signup" (ngSubmit)="signup()" [formGroup]="signupForm">
       <mat-form-field class="full-width">
-        <input matInput placeholder="Email">
+        <input matInput placeholder="Email" formControlName="email">
       </mat-form-field>
+      <control-messages [control]="signupForm.controls.email"></control-messages>
       <mat-form-field class="full-width">
-        <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'">
-        <mat-icon matSuffix (click)="hidePW = !hidePW">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+        <input matInput placeholder="Password" [type]="hidePW ? 'password' : 'text'" formControlName="password">
+        <mat-icon matSuffix (click)="hidePW = !hidePW">{{hidePW ? 'visibility' : 'visibility_off'}}</mat-icon>
       </mat-form-field>
+      <control-messages [control]="signupForm.controls.password"></control-messages>
       <mat-form-field class="full-width">
-        <input matInput placeholder="Confirm password" [type]="hide ? 'password' : 'text'">
-        <mat-icon matSuffix (click)="hideCPW = !hideCPW">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+        <input matInput placeholder="Confirm password" [type]="hideCPW ? 'password' : 'text'" formControlName="cf_password">
+        <mat-icon matSuffix (click)="hideCPW = !hideCPW">{{hideCPW ? 'visibility' : 'visibility_off'}}</mat-icon>
       </mat-form-field>
-      <mat-form-field class="full-width">
+      <control-messages [control]="signupForm"></control-messages>
+      <!-- <mat-form-field class="full-width">
         <input matInput placeholder="Your name">
       </mat-form-field>
       <mat-form-field class="full-width">
-        <mat-select placeholder="Choose your team" class="full-width">
+        <input matInput placeholder="Phone number">
+      </mat-form-field> -->
+      <mat-form-field class="full-width">
+        <mat-select placeholder="Choose your team" class="full-width" formControlName="team">
           <mat-option value="option">Frontend</mat-option>
           <mat-option value="option">Backend</mat-option>
           <mat-option value="option">Quality Control</mat-option>
@@ -36,17 +43,9 @@
           <mat-option value="option">Hurman Resource</mat-option>
         </mat-select>
       </mat-form-field>
-      <mat-form-field class="full-width">
-        <mat-select placeholder="Your Location" class="full-width">
-          <mat-option value="option">16th Floor</mat-option>
-          <mat-option value="option">15th Floor</mat-option>
-          <mat-option value="option">11st Floor</mat-option>
-          <mat-option value="option">3rd Floor</mat-option>
-          <mat-option value="option">1stA Floor</mat-option>
-        </mat-select>
-      </mat-form-field>
+      <control-messages [control]="signupForm.controls.team"></control-messages>
       <div class="group-btn">
-        <button mat-button class="btn-pink">Signup</button>
+        <button mat-button class="btn-pink">Sign Up</button>
       </div>
     </form>
   </div>

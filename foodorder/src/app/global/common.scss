@@ -26,6 +26,14 @@
       &-icon { color: color($colors, pink-1); }
     }
   }
+  &.header-text-pink {
+    .toolbar {
+      &-title { color: color($colors, pink-2); }
+    }
+    .back-button {
+      &-icon { color: color($colors, pink-1); }
+    }
+  }
   &:after {
     content: none !important;
   }
@@ -67,4 +75,12 @@
   left: 0;
   right: 0;
   bottom: 0;
+}
+
+control-messages {
+  .error-message {
+    margin: 0 0 2.5rem;
+    color: color($colors, danger);
+    font-size: 1.2rem;
+  }
 }

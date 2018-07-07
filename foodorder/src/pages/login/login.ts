@@ -8,7 +8,7 @@ import { ForgotPasswordPage } from '../forgot-password/forgot-password';
 
 import { AuthProvider } from '../../providers/auth/auth';
 
-import { ValidatorService } from '../../services/validators';
+import { ValidationService } from '../../services/validators';
 
 
 /**
@@ -35,11 +35,12 @@ export class LoginPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private auth: AuthProvider,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private validators: ValidationService
   ) {
     this.loginForm = this.formBuilder.group({
-      'email': ['', [Validators.required, ValidatorService.emailValidator]],
-      'password': ['', Validators.required, ValidatorService.passwordValidator]
+      'email': ['', [Validators.required, this.validators.emailValidator]],
+      'password': ['', Validators.required, this.validators.passwordValidator]
     })
   }
 
@@ -47,19 +48,19 @@ export class LoginPage {
     console.log('ionViewDidLoad LoginPage');
   }
 
-  onLogin(): void {
-    if (this.loginForm.dirty && this.loginForm.valid) {
-      this.auth.loginWithEmail(this.params.email, this.params.password)
-        .then(() => {
-          this.navCtrl.setRoot(HomePage, {
-            userEmail: this.params.email
-          });
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    }
-  }
+  // onLogin(): void {
+  //   if (this.loginForm.dirty && this.loginForm.valid) {
+  //     this.auth.loginWithEmail(this.params.email, this.params.password)
+  //       .then(() => {
+  //         this.navCtrl.setRoot(HomePage, {
+  //           userEmail: this.params.email
+  //         });
+  //       })
+  //       .catch(err => {
+  //         console.log(err);
+  //       });
+  //   }
+  // }
 
   goSignup() {
     this.navCtrl.push(SignupPage);
