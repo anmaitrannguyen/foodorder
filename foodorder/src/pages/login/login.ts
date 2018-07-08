@@ -75,4 +75,16 @@ export class LoginPage {
       }
     )
   }
+
+  loginWithFacebookAccount = () => {
+    this.firebaseProvider.loginWithFacebookAccount().then(
+      (result) => {
+        this.navCtrl.setRoot(HomePage);
+      },
+      (error) => {
+        console.log(error.message);
+      }
+    )
+  }
+
 }

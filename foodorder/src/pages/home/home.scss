@@ -1,3 +1,11 @@
 page-home {
 
 }
+.input-textarea {
+  min-height: 10rem;
+  background-color: transparent;
+  resize: vertical;
+  border-color: transparent;
+  border-bottom-color: $white;
+
+}

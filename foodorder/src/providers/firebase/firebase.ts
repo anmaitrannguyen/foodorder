@@ -69,7 +69,13 @@ export class FirebaseProvider {
 
   loginWithGoogleAccount = () => {
     const provider = new auth.GoogleAuthProvider();
-    
     return this.afAuth.auth.signInWithPopup(provider);
   }
+
+  loginWithFacebookAccount = () => {
+    const provider = new auth.FacebookAuthProvider();
+    return this.afAuth.auth.signInWithPopup(provider);
+  }
+
+  createMenu = {}
 }

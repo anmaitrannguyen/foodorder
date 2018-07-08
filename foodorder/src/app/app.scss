@@ -82,6 +82,8 @@ img {
 .scroll-content {
   left: 1.6rem;
   right: 1.6rem;
+  overflow-y: auto;
+  color: $white;
 }
 .pull-right {
   float: right;
