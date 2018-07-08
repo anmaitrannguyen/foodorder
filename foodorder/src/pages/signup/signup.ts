@@ -4,16 +4,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { AuthProvider } from '../../providers/auth/auth';
 
-import { LoginPage } from '../../pages/login/login';
-
 import { ValidationService } from '../../services/validators';
 
-/**
- * Generated class for the SignupPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { LoginPage } from '../../pages/login/login';
+import { HomePage } from '../../pages/home/home';
+
+// import { User } from '../../models/user';
 
 @IonicPage()
 @Component({
@@ -22,6 +18,7 @@ import { ValidationService } from '../../services/validators';
 })
 export class SignupPage {
   public signupForm: FormGroup;
+  // public user = {} as User;
 
   constructor(
     public navCtrl: NavController,
@@ -42,13 +39,10 @@ export class SignupPage {
     let params = this.signupForm.value;
     let credentials = {
       email: params.email,
-      password: params.password,
-      cf_password: params.cf_password
+      password: params.password
     }
 
-    // this.auth.signupAuth(credentials)
-    //   .then(() => {
-    //     this.navCtrl.setRoot()
-    //   });
+    this.auth.signupAuth(credentials)
+      .then(() => this.navCtrl.setRoot(HomePage));
   }
 }

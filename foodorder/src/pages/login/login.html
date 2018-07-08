@@ -12,15 +12,15 @@
     <div class="group-header">
       <img src="assets/imgs/logo.png" alt="Logo Food Order" />
     </div>
-    <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="form-custom form-login">
+    <form [formGroup]="loginForm" (ngSubmit)="login()" class="form-custom form-login">
       <mat-form-field class="full-width">
         <input matInput placeholder="Email" formControlName="email" name="email" id="email">
       </mat-form-field>
       <control-messages [control]="loginForm.controls.email"></control-messages>
 
       <mat-form-field class="full-width">
-        <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password" name="password" id="password">
-        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+        <input matInput placeholder="Password" [type]="!hide ? 'password' : 'text'" formControlName="password" name="password" id="password">
+        <mat-icon matSuffix (click)="hide = !hide">{{!hide ? 'visibility' : 'visibility_off'}}</mat-icon>
       </mat-form-field>
       <control-messages [control]="loginForm.controls.password"></control-messages>
 

@@ -18,13 +18,13 @@
       </mat-form-field>
       <control-messages [control]="signupForm.controls.email"></control-messages>
       <mat-form-field class="full-width">
-        <input matInput placeholder="Password" [type]="hidePW ? 'password' : 'text'" formControlName="password">
-        <mat-icon matSuffix (click)="hidePW = !hidePW">{{hidePW ? 'visibility' : 'visibility_off'}}</mat-icon>
+        <input matInput placeholder="Password" [type]="!hidePW ? 'password' : 'text'" formControlName="password">
+        <mat-icon matSuffix (click)="hidePW = !hidePW">{{!hidePW ? 'visibility_off' : 'visibility'}}</mat-icon>
       </mat-form-field>
       <control-messages [control]="signupForm.controls.password"></control-messages>
       <mat-form-field class="full-width">
-        <input matInput placeholder="Confirm password" [type]="hideCPW ? 'password' : 'text'" formControlName="cf_password">
-        <mat-icon matSuffix (click)="hideCPW = !hideCPW">{{hideCPW ? 'visibility' : 'visibility_off'}}</mat-icon>
+        <input matInput placeholder="Confirm password" [type]="!hideCPW ? 'password' : 'text'" formControlName="cf_password">
+        <mat-icon matSuffix (click)="hideCPW = !hideCPW">{{!hideCPW ? 'visibility_off' : 'visibility'}}</mat-icon>
       </mat-form-field>
       <control-messages [control]="signupForm"></control-messages>
       <!-- <mat-form-field class="full-width">

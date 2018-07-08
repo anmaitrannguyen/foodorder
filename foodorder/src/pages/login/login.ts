@@ -1,22 +1,16 @@
 import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-import { HomePage } from '../../pages/home/home';
-import { SignupPage } from '../signup/signup';
-import { ForgotPasswordPage } from '../forgot-password/forgot-password';
 
 import { AuthProvider } from '../../providers/auth/auth';
 
 import { ValidationService } from '../../services/validators';
 
+import { HomePage } from '../../pages/home/home';
+import { SignupPage } from '../signup/signup';
+import { ForgotPasswordPage } from '../forgot-password/forgot-password';
 
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+// import { User } from '../../models/user';
 
 @IonicPage()
 @Component({
@@ -24,43 +18,37 @@ import { ValidationService } from '../../services/validators';
   templateUrl: 'login.html',
 })
 export class LoginPage {
-  public params = {
-    email: '',
-    password: '',
-  }
-
-  public loginForm: any;
+  public loginForm: FormGroup;
+  // public user = {} as User;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private auth: AuthProvider,
-    private formBuilder: FormBuilder,
+    private fb: FormBuilder,
     private validators: ValidationService
   ) {
-    this.loginForm = this.formBuilder.group({
-      'email': ['', [Validators.required, this.validators.emailValidator]],
-      'password': ['', Validators.required, this.validators.passwordValidator]
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, this.validators.emailValidator]],
+      password: ['', [Validators.required, this.validators.passwordValidator]]
     })
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
-  }
+  login() {
+    let params = this.loginForm.value;
 
-  // onLogin(): void {
-  //   if (this.loginForm.dirty && this.loginForm.valid) {
-  //     this.auth.loginWithEmail(this.params.email, this.params.password)
-  //       .then(() => {
-  //         this.navCtrl.setRoot(HomePage, {
-  //           userEmail: this.params.email
-  //         });
-  //       })
-  //       .catch(err => {
-  //         console.log(err);
-  //       });
-  //   }
-  // }
+    if (!params.email) {
+      return;
+    }
+
+    let credentials = {
+      email: params.email,
+      password: params.password
+    }
+
+    this.auth.loginAuth(credentials)
+      .then(() => this.navCtrl.setRoot(HomePage));
+  }
 
   goSignup() {
     this.navCtrl.push(SignupPage);
