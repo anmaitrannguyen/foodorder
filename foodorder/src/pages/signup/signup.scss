@@ -1,0 +1,23 @@
+page-signup {
+  .heading {
+    padding-top: 20px;
+    text-align: center;
+  }
+  .invalid {
+    text-align: center;
+    color: red;
+  }
+  .item {
+    padding-right: 16px;
+  }
+  .has-error.item {
+    .item-inner {
+      border-bottom: 1px solid red;
+      box-shadow: inset 0 -1px 0 0 #f53d3d;
+    }
+  }
+  .button {
+    margin-top: 40px;
+  }
+
+    }

@@ -1,0 +1,41 @@
+<ion-content padding>
+  <div class="heading">
+    <h2>Sign Up</h2>
+  </div>
+  <ion-list>
+    <form [formGroup]="signUpForm" (ngSubmit)="onSignup()">
+      <ion-item>
+        <ion-label floating color="primary">Email</ion-label>
+        <ion-input type="text" spellcheck="false" formControlName="email">
+        </ion-input>
+      </ion-item>
+      <p *ngIf="isFieldValid('email')" padding-left style="color: red">Required field!</p>
+      <ion-item>
+        <ion-label floating color="primary">Password</ion-label>
+        <ion-input type="password" formControlName="password">
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating color="primary">Confirm Password</ion-label>
+        <ion-input type="password" formControlName="confirmpass">
+        </ion-input>
+      </ion-item>
+      <p *ngIf="isFieldValid('password')" padding-left style="color: red">Required field!</p>
+      <p color="danger" class="invalid" *ngIf="invalid" margin-top>Please input valid username and password</p>
+      <ion-item padding-top>
+        <ion-label>Team</ion-label>
+        <ion-select formControlName="team">
+          <ion-option *ngFor="let team of listTeam">{{team.text}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item padding-top>
+        <ion-label>Location</ion-label>
+        <ion-select formControlName="location">
+          <ion-option *ngFor="let location of listLocation">{{location.text}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <button ion-button block type="submit">Sign Up</button>
+      <button ion-button clear float-end (click)="login()">Login</button>
+    </form>
+  </ion-list>
+</ion-content>
