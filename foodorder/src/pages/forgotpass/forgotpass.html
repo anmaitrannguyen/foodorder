@@ -1,0 +1,16 @@
+<ion-content padding>
+  <form (ngSubmit)="resetPassword()" [formGroup]="resetPasswordForm">
+    <ion-list>
+      Please enter your email to get reset password.
+      <ion-item>
+        <ion-label floating>Email</ion-label>
+        <ion-input formControlName="email" type="text"></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
+  </form>
+  <button ion-button block (click)="resetPassword()">Reset Password</button>
+
+</ion-content>
+

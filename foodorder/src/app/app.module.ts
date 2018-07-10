@@ -14,6 +14,8 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AuthProvider } from '../providers/auth/auth';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
+import { ForgotpassPage } from '../pages/forgotpass/forgotpass';
+import { ListproductPage } from '../pages/listproduct/listproduct';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAPSqLp6YUnRAGxr1evEMRVePY02gfVAT8",
@@ -28,7 +30,9 @@ const firebaseConfig = {
     MyApp,
     HomePage,
     LoginPage,
-    RegisterPage,
+		RegisterPage,
+		ForgotpassPage,
+		ListproductPage,
   ],
   imports: [
     BrowserModule,
@@ -42,7 +46,9 @@ const firebaseConfig = {
     MyApp,
     HomePage,
     LoginPage,
-    RegisterPage,
+		RegisterPage,
+		ForgotpassPage,
+		ListproductPage,
   ],
   providers: [
     StatusBar,
