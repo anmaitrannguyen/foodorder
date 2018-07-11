@@ -1,10 +1,9 @@
 <ion-header>
   <ion-navbar>
-    
-        <ion-buttons>LaLa 
-            <ion-nav id="nav" #content [root]="rootPage">
-           </ion-nav>
-        </ion-buttons>
+    <ion-buttons>LaLa 
+        <ion-nav id="nav" #content [root]="rootPage">
+        </ion-nav>
+    </ion-buttons>
     <ion-title>Home page</ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="createMenu()">
@@ -12,16 +11,6 @@
       </button>
     </ion-buttons>
   </ion-navbar>
-  <ion-menu [content]="content">
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Menu</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content>
-      
-    </ion-content>
-  </ion-menu>
 </ion-header>
 <ion-menu [content]="content">
   <ion-header>
@@ -48,69 +37,12 @@
 </ion-menu>
   
 <ion-content>
-  
   <div *ngIf="user">Hello, {{user.displayName}}</div>
-  <form [formGroup]="menuForm" [ngClass]="{'form-invalid': invalid}">
-      <div class="form-group">
-        <ion-item>
-          <ion-label floating>Order Name</ion-label>
-          <ion-input type="text" value="" formControlName="orderName"></ion-input>
-        </ion-item>
-        <!-- <p class="danger form-group__error-message" 
-          *ngIf="resetForm.controls['email'].errors && resetForm.controls['email'].dirty" >Email is not valid.</p> -->
-      </div>
-      <div class="form-group">
-        <ion-item>
-          <ion-label floating>Description</ion-label>
-          <ion-input type="text" value="" formControlName="description"></ion-input>
-        </ion-item>
-        <!-- <p class="danger form-group__error-message" 
-          *ngIf="resetForm.controls['email'].errors && resetForm.controls['email'].dirty" >Email is not valid.</p> -->
-      </div>
-
-      <!-- <div class="form-group">
-        <textarea class="input-textarea" style="width: 100%;" form></textarea>
-        <p class="danger form-group__error-message" 
-          *ngIf="resetForm.controls['email'].errors && resetForm.controls['email'].dirty" >Email is not valid.</p>
-      </div> -->
-  </form>
-  <ion-list>
-    <ion-list-header>
-      Menu
-    </ion-list-header>
-    <ion-item *ngFor="let item of menuList">
-      {{item.foodName}}
-      <ion-note item-end>{{item.price}}</ion-note>
-    </ion-item>
-    
-  </ion-list>
-  <form [formGroup]="newFieldForm" (ngSubmit)="addField()" [ngClass]="{'form-invalid': invalid}">
-    <ion-grid>
-      <ion-row>
-        <ion-col col-8>
-          <div class="form-group">
-            <ion-item>
-              <ion-label floating>Food Name</ion-label>
-              <ion-input type="text" value="" formControlName="foodName"></ion-input>
-            </ion-item>
-            <!-- <p class="danger form-group__error-message" 
-              *ngIf="resetForm.controls['email'].errors && resetForm.controls['email'].dirty" >Email is not valid.</p> -->
-          </div>
-        </ion-col>
-        <ion-col col-4>
-          <div class="form-group">
-            <ion-item>
-              <ion-label floating>Price</ion-label>
-              <ion-input type="number" value="" formControlName="price"></ion-input>
-            </ion-item>
-            <!-- <p class="danger form-group__error-message" 
-              *ngIf="resetForm.controls['email'].errors && resetForm.controls['email'].dirty" >Email is not valid.</p> -->
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </form>
-  <button class="button-md--2 facebook" ion-button clear block (click)="addField()">
-    Add
-  </button>
+  <ion-content class="card-background-page">
+    <ion-card *ngFor="let item of menus">
+      <img src="../../assets/imgs/card-amsterdam.png"/>
+      <div class="card-title">{{item.orderName}}</div>
+      <div class="card-subtitle">{{item.description}}</div>
+    </ion-card>
+  </ion-content>
 </ion-content>

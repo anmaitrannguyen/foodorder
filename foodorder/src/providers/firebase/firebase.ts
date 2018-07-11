@@ -1,9 +1,6 @@
 import { Injectable } from '@angular/core';
-import { UserInfo } from 'firebase';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { User } from '../../type';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { ToastController } from 'ionic-angular';
 import { auth } from 'firebase/app';
 
 
@@ -19,8 +16,6 @@ export class FirebaseProvider {
   constructor(
     private afAuth: AngularFireAuth,
     private firebaseDB: AngularFireDatabase,
-    private toastCtrl: ToastController,
-    private firebase: AngularFireDatabase
   ) {
     console.log('Hello FirebaseProvider Provider');
   }
@@ -77,5 +72,18 @@ export class FirebaseProvider {
     return this.afAuth.auth.signInWithPopup(provider);
   }
 
-  createMenu = {}
+  createMenu = (data) => {
+    const menuCollection = this.firebaseDB.list('/menus');
+    
+    return menuCollection.push(data);
+  }
+
+  getAllPublicMenu = () => {
+    return this.firebaseDB.list('/menus', 
+    ref => ref.orderByChild('private').equalTo('false')).valueChanges();
+  }
+  getAllOwnerPrivate = (uid) => {
+    return this.firebaseDB.list('/menus', 
+    ref => ref.orderByChild('uid').equalTo(uid)).valueChanges();
+  }
 }

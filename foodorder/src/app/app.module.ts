@@ -14,6 +14,7 @@ import { ResetPasswordComponent } from '../components/reset-password/reset-passw
 import { LoginPage } from '../pages/login/login';
 import { SignOutComponent } from '../components/sign-out/sign-out';
 import { SignUpPage } from '../pages/sign-up/sign-up';
+import { CreateMenuComponent } from '../components/create-menu/create-menu';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCMbCyfvJjjEv-cPZMiIHMqiV2Sov4ChU8",
@@ -32,6 +33,7 @@ const firebaseConfig = {
     LoginPage,
     SignOutComponent,
     SignUpPage,
+    CreateMenuComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,6 +49,7 @@ const firebaseConfig = {
     ResetPasswordComponent,
     LoginPage,
     SignUpPage,
+    CreateMenuComponent,
   ],
   providers: [
     StatusBar,
