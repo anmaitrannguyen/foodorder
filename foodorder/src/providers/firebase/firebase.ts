@@ -82,7 +82,9 @@ export class FirebaseProvider {
     return this.firebaseDB.list('/menus', 
     ref => ref.orderByChild('private').equalTo('false')).valueChanges();
   }
-  getAllOwnerPrivate = (uid) => {
+  
+  //TODO: get all private menu owner
+  getAllMenuOwner = (uid) => {
     return this.firebaseDB.list('/menus', 
     ref => ref.orderByChild('uid').equalTo(uid)).valueChanges();
   }
