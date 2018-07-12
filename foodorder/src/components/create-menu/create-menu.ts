@@ -52,7 +52,7 @@ export class CreateMenuComponent {
     if(this.menuForm.valid && this.uid) {
       this.firebaseProvider.createMenu(
         {...this.menuForm.value, foods: this.menuList, uid: this.uid}
-      ).then((res) => {
+      ).then(() => {
         this.navCtrl.pop();
       });
     }

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { auth } from 'firebase/app';
+import { Menu } from '../../type';
 
 
 /*
@@ -72,20 +73,34 @@ export class FirebaseProvider {
     return this.afAuth.auth.signInWithPopup(provider);
   }
 
-  createMenu = (data) => {
-    const menuCollection = this.firebaseDB.list('/menus');
+  createMenu = (data: Menu) => {
+    //save menu
+    const menuCollection = this.firebaseDB.list('/menus').push(data);
     
-    return menuCollection.push(data);
+    if(data.private === 'true') {
+      return this.createPrivateMenuKey(menuCollection.key, data.uid);
+    } else {
+      return this.createPublicMenuKey(menuCollection.key);
+    }
+  }
+  createPublicMenuKey = (key) => {
+    return this.firebaseDB.list('/menu-public-map').push(key);
   }
 
-  getAllPublicMenu = () => {
-    return this.firebaseDB.list('/menus', 
-    ref => ref.orderByChild('private').equalTo('false')).valueChanges();
+  createPrivateMenuKey = (key, uid) => {
+    return this.firebaseDB.list(`/menu-private-map/${uid}`).push(key);
+  }
+
+  getAllPublicMenuKey(): FirebaseListObservable<any[]> {
+    return this.firebaseDB.list('/menu-public-map');
   }
   
   //TODO: get all private menu owner
-  getAllMenuOwner = (uid) => {
-    return this.firebaseDB.list('/menus', 
-    ref => ref.orderByChild('uid').equalTo(uid)).valueChanges();
+  getAllPrivateOwnerKey = (uid) => {
+    return this.firebaseDB.list(`/menu-private-map/${uid}`).valueChanges();
+  }
+
+  getMenuByKey = (id) => {
+    return this.firebaseDB.list(`/menus/${id}`).valueChanges();
   }
 }

@@ -38,11 +38,13 @@
   
 <ion-content>
   <div *ngIf="user">Hello, {{user.displayName}}</div>
-  <ion-content class="card-background-page">
-    <ion-card *ngFor="let item of menus">
-      <img src="../../assets/imgs/card-amsterdam.png"/>
-      <div class="card-title">{{item.orderName}}</div>
-      <div class="card-subtitle">{{item.description}}</div>
-    </ion-card>
-  </ion-content>
+  <div *ngIf="publicMenus">
+    <div class="card-background-page" *ngFor="let key of publicMenus | async">
+      <menu [key]="key"></menu>
+    </div>
+  </div>
+  
+  <!-- <div class="card-background-page" *ngFor="let key of (privateMenus | async)">
+    <menu [key]="key"></menu>
+  </div> -->
 </ion-content>
