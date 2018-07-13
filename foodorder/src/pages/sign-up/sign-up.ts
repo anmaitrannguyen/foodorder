@@ -49,9 +49,6 @@ export class SignUpPage {
 
   signUp() {
     const account = this.signUpForm.value;
-
-    console.log(account);
-
     const result = this.firebaseProvider.createFirebaseAccount(account);
    
     result.then((res) => {

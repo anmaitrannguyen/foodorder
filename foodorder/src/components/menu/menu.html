@@ -1,5 +1,6 @@
-<ion-card >
+<ion-card *ngIf="menu">
   <img src="../../assets/imgs/card-amsterdam.png"/>
-  <div class="card-title">{{item.orderName | async | json }}</div>
-  <div class="card-subtitle">{{item.description | async | json }}</div>
+  <div class="card-title">{{menu.orderName | async}}</div>
+  <pre>{{menu | async | json}}</pre>
+  <!-- <div class="card-subtitle">{{item.description | async}}</div> -->
 </ion-card>

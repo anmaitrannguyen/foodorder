@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FirebaseProvider } from '../../providers/firebase/firebase';
-import { Menu } from '../../type';
+import { Observable } from 'rxjs';
+// import { Menu } from '../../type';
 
 /**
  * Generated class for the MenuComponent component.
@@ -13,12 +14,21 @@ import { Menu } from '../../type';
   templateUrl: 'menu.html'
 })
 export class MenuComponent {
-
-  @Input() key;  
-  menu: any;
+  _key: string;
+  @Input() 
+  set key(key: string) {
+    this._key = key;
+  }; 
+   
+  menu: Observable<any>;
 
   constructor(private firebaseProvider: FirebaseProvider) {
-    console.log(this.key);
-    this.menu = firebaseProvider.getMenuByKey(this.key);
+    console.log(this._key);
+    
   }
+
+  ngOnChanges() {
+    this.menu = this.firebaseProvider.getMenuByKey(this._key);
+  }
+
 }

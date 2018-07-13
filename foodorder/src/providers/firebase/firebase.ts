@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { auth } from 'firebase/app';
 import { Menu } from '../../type';
 
@@ -91,8 +91,8 @@ export class FirebaseProvider {
     return this.firebaseDB.list(`/menu-private-map/${uid}`).push(key);
   }
 
-  getAllPublicMenuKey(): FirebaseListObservable<any[]> {
-    return this.firebaseDB.list('/menu-public-map');
+  getAllPublicMenuKey = () => {
+    return this.firebaseDB.list('/menu-public-map').valueChanges();
   }
   
   //TODO: get all private menu owner

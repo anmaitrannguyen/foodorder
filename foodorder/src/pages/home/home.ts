@@ -5,7 +5,6 @@ import { FirebaseProvider } from '../../providers/firebase/firebase';
 import { CreateMenuComponent } from '../../components/create-menu/create-menu';
 import { User } from '../../type';
 import { Observable } from 'rxjs';
-import { FirebaseListObservable } from 'angularfire2/database';
 
 // import { map } from 'rxjs/operators';
 @Component({
@@ -14,8 +13,8 @@ import { FirebaseListObservable } from 'angularfire2/database';
 })
 export class HomePage {
   user: User;
-  publicMenus: FirebaseListObservable<any>;
-  privateMenus: Observable<any>;   
+  publicMenus: any;
+  privateMenus: any;   
 
   constructor(
     public navCtrl: NavController, 
@@ -31,16 +30,25 @@ export class HomePage {
       }
     });
 
-    this.publicMenus = [];
-    this.privateMenus = [];
+    // this.publicMenus = [];
+    // this.privateMenus = [];
   }
 
   createMenu = () => {
     this.navCtrl.push(CreateMenuComponent);
   }
-
+  
   getAllMenuKeys = () => {
-    this.publicMenus = this.firebaseProvider.getAllPublicMenuKey();
-    this.privateMenus = this.firebaseProvider.getAllPrivateOwnerKey(this.user.uid);
+    this.firebaseProvider.getAllPublicMenuKey().subscribe(
+      (values) => {
+        this.publicMenus = values;
+      }
+    );
+    
+    this.firebaseProvider.getAllPrivateOwnerKey(this.user.uid).subscribe(
+      (values) => {
+        this.privateMenus = values;
+      }
+    );
   }
  }
