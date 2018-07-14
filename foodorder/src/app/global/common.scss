@@ -70,6 +70,11 @@
   color: color($colors, white) !important;
 }
 
+.btn-red {
+  background-color: color($colors, danger) !important;
+  color: color($colors, white) !important;
+}
+
 .group-footer {
   position: absolute;
   left: 0;

@@ -33,13 +33,13 @@ export class ValidationService {
     }
   }
 
-  confirmPassword(signupForm) {
-    if (signupForm.controls) {
-      if (signupForm.value.password === signupForm.value.cf_password) {
-        signupForm.controls.cf_password.setErrors(null);
+  confirmPassword(signUpForm) {
+    if (signUpForm.controls) {
+      if (signUpForm.value.password === signUpForm.value.cf_password) {
+        signUpForm.controls.cf_password.setErrors(null);
         return null
       } else {
-        signupForm.controls.cf_password.setErrors({ "incorrect": true });
+        signUpForm.controls.cf_password.setErrors({ "incorrect": true });
         return { 'invalidcf_password': true };
       }
     }

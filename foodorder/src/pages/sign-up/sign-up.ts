@@ -13,11 +13,12 @@ import { HomePage } from '../../pages/home/home';
 
 @IonicPage()
 @Component({
-  selector: 'page-signup',
-  templateUrl: 'signup.html',
+  selector: 'page-sign-up',
+  templateUrl: 'sign-up.html',
 })
-export class SignupPage {
-  public signupForm: FormGroup;
+export class SignUpPage {
+  public signUpForm: FormGroup;
+  public errorMessage: string = '';
   // public user = {} as User;
 
   constructor(
@@ -27,7 +28,7 @@ export class SignupPage {
     private auth: AuthProvider,
     private validators: ValidationService
   ) {
-    this.signupForm = this.fb.group({
+    this.signUpForm = this.fb.group({
       email: ['', [Validators.required, this.validators.emailValidator]],
       password: ['', [Validators.required, this.validators.passwordValidator]],
       cf_password: ['', [Validators.required, this.validators.confirmPassword]],
@@ -35,14 +36,17 @@ export class SignupPage {
     }, { validator: this.validators.confirmPassword });
   }
 
-  signup() {
-    let params = this.signupForm.value;
+  signUp() {
+    let params = this.signUpForm.value;
     let credentials = {
       email: params.email,
       password: params.password
     }
 
-    this.auth.signupAuth(credentials)
-      .then(() => this.navCtrl.setRoot(HomePage));
+    this.auth.signUpAuth(credentials)
+      .then(() => this.navCtrl.setRoot(HomePage))
+      .catch(error => {
+        this.errorMessage = error.message;
+      });;
   }
 }

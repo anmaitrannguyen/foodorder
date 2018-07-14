@@ -15,25 +15,12 @@ export class AuthProvider {
     });
   }
 
-  async signupAuth(credentials) {
-    try {
-      const result = await this.afAuth.auth.createUserWithEmailAndPassword(credentials.email, credentials.password);
-      console.log(result);
-      return result;
-    }
-    catch (e) {
-      console.error(e);
-    }
+  signUpAuth(credentials) {
+    return this.afAuth.auth.createUserWithEmailAndPassword(credentials.email, credentials.password);
   }
 
-  async loginAuth(credentials) {
-    try {
-      const result = await this.afAuth.auth.createUserWithEmailAndPassword(credentials.email, credentials.password);
-      return result;
-    }
-    catch (e) {
-      console.error(e);
-    }
+  loginAuth(credentials) {
+    return this.afAuth.auth.signInWithEmailAndPassword(credentials.email, credentials.password);
   }
 
   signOut() {

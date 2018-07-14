@@ -30,7 +30,7 @@ export class MyApp {
     this.auth.afAuth.authState
       .subscribe(
         user => {
-          if (user && user.email && user.uid) {
+          if (user && user.uid) {
             this.rootPage = HomePage;
           } else {
             this.rootPage = LoginPage;

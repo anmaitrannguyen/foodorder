@@ -1,5 +1,5 @@
 <!--
-  Generated template for the SignupPage page.
+  Generated template for the SignUpPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
@@ -12,21 +12,21 @@
 
 <ion-content class="content-signup content-auth" padding>
   <div class="wrap-auth">
-    <form class="form-custom form-signup" (ngSubmit)="signup()" [formGroup]="signupForm">
+    <form class="form-custom form-signup" (ngSubmit)="signUp()" [formGroup]="signUpForm">
       <mat-form-field class="full-width">
         <input matInput placeholder="Email" formControlName="email">
       </mat-form-field>
-      <control-messages [control]="signupForm.controls.email"></control-messages>
+      <control-messages [control]="signUpForm.controls.email"></control-messages>
       <mat-form-field class="full-width">
         <input matInput placeholder="Password" [type]="!hidePW ? 'password' : 'text'" formControlName="password">
         <mat-icon matSuffix (click)="hidePW = !hidePW">{{!hidePW ? 'visibility_off' : 'visibility'}}</mat-icon>
       </mat-form-field>
-      <control-messages [control]="signupForm.controls.password"></control-messages>
+      <control-messages [control]="signUpForm.controls.password"></control-messages>
       <mat-form-field class="full-width">
         <input matInput placeholder="Confirm password" [type]="!hideCPW ? 'password' : 'text'" formControlName="cf_password">
         <mat-icon matSuffix (click)="hideCPW = !hideCPW">{{!hideCPW ? 'visibility_off' : 'visibility'}}</mat-icon>
       </mat-form-field>
-      <control-messages [control]="signupForm"></control-messages>
+      <control-messages [control]="signUpForm"></control-messages>
       <!-- <mat-form-field class="full-width">
         <input matInput placeholder="Your name">
       </mat-form-field>
@@ -43,7 +43,8 @@
           <mat-option value="option">Hurman Resource</mat-option>
         </mat-select>
       </mat-form-field>
-      <control-messages [control]="signupForm.controls.team"></control-messages>
+      <control-messages [control]="signUpForm.controls.team"></control-messages>
+      <p class="showError" *ngIf="errorMessage">{{errorMessage}}</p>
       <div class="group-btn">
         <button mat-button class="btn-pink">Sign Up</button>
       </div>

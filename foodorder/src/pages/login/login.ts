@@ -1,14 +1,16 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 import { AuthProvider } from '../../providers/auth/auth';
 
 import { ValidationService } from '../../services/validators';
 
 import { HomePage } from '../../pages/home/home';
-import { SignupPage } from '../signup/signup';
+import { SignUpPage } from '../sign-up/sign-up';
 import { ForgotPasswordPage } from '../forgot-password/forgot-password';
+import { auth } from 'firebase';
 
 // import { User } from '../../models/user';
 
@@ -24,15 +26,23 @@ export class LoginPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private auth: AuthProvider,
+    private _auth: AuthProvider,
     private fb: FormBuilder,
-    private validators: ValidationService
+    private validators: ValidationService,
+    private afAuth: AngularFireAuth
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, this.validators.emailValidator]],
       password: ['', [Validators.required, this.validators.passwordValidator]]
     })
   }
+
+  // googleLoginViaPopup() {
+  //   this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider)
+  //     .then(credentials => console.log(credentials));
+  // }
+
+
 
   login() {
     let params = this.loginForm.value;
@@ -46,12 +56,12 @@ export class LoginPage {
       password: params.password
     }
 
-    this.auth.loginAuth(credentials)
+    this._auth.loginAuth(credentials)
       .then(() => this.navCtrl.setRoot(HomePage));
   }
 
-  goSignup() {
-    this.navCtrl.push(SignupPage);
+  goSignUp() {
+    this.navCtrl.push(SignUpPage);
   }
 
   goForgot() {

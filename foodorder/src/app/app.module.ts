@@ -10,7 +10,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
-import { SignupPage } from '../pages/signup/signup';
+import { SignUpPage } from '../pages/sign-up/sign-up';
 import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -49,7 +49,7 @@ const config = {
     MyApp,
     HomePage,
     LoginPage,
-    SignupPage,
+    SignUpPage,
     ForgotPasswordPage,
     ValidationControlMessages
   ],
@@ -82,7 +82,7 @@ const config = {
     MyApp,
     HomePage,
     LoginPage,
-    SignupPage,
+    SignUpPage,
     ForgotPasswordPage,
     ValidationControlMessages
   ],
