@@ -31,6 +31,5 @@ export class MenuDetailPage {
 
   editMenu = () => {
     this.navCtrl.push(CreateMenuComponent, {menu: this.menu});
-    
   }
 }

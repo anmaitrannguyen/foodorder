@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NavController, NavParams } from 'ionic-angular';
 import { FirebaseProvider } from '../../providers/firebase/firebase';
 import { LoginPage } from '../../pages/login/login';
+import { Menu } from '../../type';
 
 /**
  * Generated class for the CreateMenuComponent component.
@@ -19,7 +20,7 @@ export class CreateMenuComponent {
   newFieldForm: FormGroup;
   menuList: Object[];
   uid: string;
-  // menu: object;
+  menu: Menu;
 
   constructor(
     public navCtrl: NavController, 
@@ -27,6 +28,7 @@ export class CreateMenuComponent {
     private formBuilder: FormBuilder,
     private navParams: NavParams,
   ) {
+    this.menu = this.navParams.get('menu') || {};
     
     // this.afAuth.auth.signOut(); 
     this.firebaseProvider.getCurrentUser().subscribe((user) => {
@@ -43,7 +45,6 @@ export class CreateMenuComponent {
       private: 'false',
     });
 
-    const menu = this.navParams.get('menu');
     
     this.newFieldForm = formBuilder.group({
       foodName: ['',  Validators.required],
@@ -52,28 +53,64 @@ export class CreateMenuComponent {
 
     this.menuList = [];
 
-    if(menu) {
-      console.log(menu);
-      this.menuForm.setValue({
-        orderName: menu.orderName,
-        description: menu.description,
-        private: menu.private,
-      }, {
-        onlySelf: false,
-        emitEvent: true,
-      });
-
-      this.menuList = menu.foods;
+    if(this.menu) {
+      this.menuList = this.menu.foods;
     }
   }
 
   createMenu = () => {
     if(this.menuForm.valid && this.uid) {
-      this.firebaseProvider.createMenu(
-        {...this.menuForm.value, foods: this.menuList, uid: this.uid}
-      ).then(() => {
-        this.navCtrl.pop();
-      });
+      const sendData = {...this.menuForm.value, foods: this.menuList, uid: this.uid};
+
+      if(this.menu) {
+        const changedMode = this.menu.private !== this.menuForm.value.private;
+
+        if(changedMode) {
+          if(sendData.private === 'false') {
+          this.firebaseProvider.removePrivateMenuOwnerByKey(sendData.uid, this.menu.id).then(
+            () => {
+              this.firebaseProvider.createPrivateMenuKey( this.menu.id, sendData.uid).then(
+                (res) => {
+                  console.log(res);
+                }
+              );
+            } 
+          ).catch(
+            (e) => console.log(e)
+          );
+          } else {
+            this.firebaseProvider.createPrivateMenuKey(this.menu.id, sendData.uid).then(
+              () => {
+              this.firebaseProvider.removePublicMenuByKey(this.menu.id).then(
+                (res) => {
+                  console.log(res);
+                }
+              );
+            }
+          ).catch(
+            (e) => console.log(e)
+          );
+          }
+
+        } else {
+          //update data
+        this.firebaseProvider.updateMenuByKey(
+          this.menu.id, 
+          sendData,
+          changedMode
+        ).then(
+          (res) => console.log(res)
+        ).catch(
+          (e) => console.log(e)
+        )
+        }
+      } else {
+        this.firebaseProvider.createMenu(
+          sendData
+        ).then(() => {
+          this.navCtrl.pop();
+        });
+      }
     }
   }
 

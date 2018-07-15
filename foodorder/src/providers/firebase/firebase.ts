@@ -85,11 +85,11 @@ export class FirebaseProvider {
     }
   }
   createPublicMenuKey = (key) => {
-    return this.firebaseDB.list('/menu-public-map').push(key);
+    return this.firebaseDB.object(`/menu-public-map/${key}`).set(true);
   }
 
   createPrivateMenuKey = (key, uid) => {
-    return this.firebaseDB.list(`/menu-private-map/${uid}`).push(key);
+    return this.firebaseDB.object(`/menu-private-map/${uid}/${key}`).set(true);
   }
 
   getAllPublicMenuKey = () => {
@@ -103,5 +103,19 @@ export class FirebaseProvider {
 
   getMenuByKey = (id) => {
     return this.firebaseDB.object(`/menus/${id}`).valueChanges();
+  }
+
+  updateMenuByKey = (key, data, changedMode) => {
+    
+    return this.firebaseDB.object(`/menus/${key}`).update(data);
+    
+  }
+
+  removePublicMenuByKey = (key) => {
+    return this.firebaseDB.object(`/menu-public-map/${key}`).remove();
+  }
+
+  removePrivateMenuOwnerByKey = (uid, key) => {
+    return this.firebaseDB.object(`/menu-private-map/${uid}/${key}`).remove();
   }
 }

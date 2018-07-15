@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { FirebaseProvider } from '../../providers/firebase/firebase';
-import { Observable } from 'rxjs';
 // import { Menu } from '../../type';
 import { NavController } from 'ionic-angular';
 import { MenuDetailPage } from '../../pages/menu-detail/menu-detail';

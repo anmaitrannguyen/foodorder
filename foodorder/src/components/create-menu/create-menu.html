@@ -23,7 +23,7 @@
     <div class="form-group">
       <ion-item>
         <ion-label floating>Order Name</ion-label>
-        <ion-input type="text" value="" formControlName="orderName"></ion-input>
+        <ion-input type="text" value="{{menu.orderName}}" formControlName="orderName"></ion-input>
       </ion-item>
       <!-- <p class="danger form-group__error-message" 
         *ngIf="resetForm.controls['email'].errors && resetForm.controls['email'].dirty" >Email is not valid.</p> -->
@@ -31,7 +31,7 @@
     <div class="form-group">
       <ion-item>
         <ion-label floating>Description</ion-label>
-        <ion-input type="text" value="" formControlName="description"></ion-input>
+        <ion-input type="text" value="{{menu.description}}" formControlName="description"></ion-input>
       </ion-item>
       <!-- <p class="danger form-group__error-message" 
         *ngIf="resetForm.controls['email'].errors && resetForm.controls['email'].dirty" >Email is not valid.</p> -->
@@ -39,8 +39,8 @@
     <ion-item>
       <ion-label>Mode</ion-label>
       <ion-select formControlName="private">
-        <ion-option value="true">Private</ion-option>
-        <ion-option value="false">Public</ion-option>
+        <ion-option value="false"  [selected]="menu.private === 'false'">Public</ion-option>
+        <ion-option value="true" [selected]="menu.private === 'true'">Private</ion-option>
       </ion-select>
     </ion-item>
     <!-- <div class="form-group">
