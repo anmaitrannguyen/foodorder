@@ -2,6 +2,9 @@ import { Component, Input } from '@angular/core';
 import { FirebaseProvider } from '../../providers/firebase/firebase';
 import { Observable } from 'rxjs';
 // import { Menu } from '../../type';
+import { NavController } from 'ionic-angular';
+import { MenuDetailPage } from '../../pages/menu-detail/menu-detail';
+import { Menu } from '../../type';
 
 /**
  * Generated class for the MenuComponent component.
@@ -20,15 +23,24 @@ export class MenuComponent {
     this._key = key;
   }; 
    
-  menu: Observable<any>;
+  menu: object;
 
-  constructor(private firebaseProvider: FirebaseProvider) {
-    console.log(this._key);
-    
+  constructor(
+    private firebaseProvider: FirebaseProvider,
+    private navCtrl: NavController) {
   }
 
   ngOnChanges() {
-    this.menu = this.firebaseProvider.getMenuByKey(this._key);
+    this.firebaseProvider.getMenuByKey(this._key).subscribe(
+      (value) => {
+        this.menu = value;
+      }
+    );
+  }
+
+  gotoMenuDetail() {
+    this.navCtrl.push(MenuDetailPage, {menu: this.menu});
+    // console.log(this._key);
   }
 
 }

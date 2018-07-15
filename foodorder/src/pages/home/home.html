@@ -5,11 +5,7 @@
         </ion-nav>
     </ion-buttons>
     <ion-title>Home page</ion-title>
-    <ion-buttons end>
-      <button ion-button icon-only (click)="createMenu()">
-        Create
-      </button>
-    </ion-buttons>
+    
   </ion-navbar>
 </ion-header>
 <ion-menu [content]="content">
@@ -36,14 +32,18 @@
   </ion-content>
 </ion-menu>
   
-<ion-content>
+<ion-content class="cards-bg">
   <div *ngIf="user">Hello, {{user.displayName}}</div>
-  <div class="card-background-page" *ngFor="let key of publicMenus">
-    <menu [key]="key"></menu>
+  <div class="card-background-page" *ngFor="let item of publicMenus | async">
+    <menu [key]="item.key"></menu>
   </div>
-  <pre>{{publicMenus | json}}</pre>
-  <div class="card-background-page" *ngFor="let key of privateMenus">
-    <menu [key]="key"></menu>
+  <!-- <pre>{{publicMenus | async | json}}</pre> -->
+
+  <div class="card-background-page" *ngFor="let item of privateMenus | async">
+    <menu [key]="item.key"></menu>
   </div>
-  <pre>{{privateMenus | json}}</pre>
+  <!-- <pre>{{privateMenus | async | json}}</pre> -->
+  <ion-fab right bottom>
+    <button ion-fab color="danger"  (click)="createMenu()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
 </ion-content>

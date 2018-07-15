@@ -16,6 +16,7 @@ import { SignOutComponent } from '../components/sign-out/sign-out';
 import { SignUpPage } from '../pages/sign-up/sign-up';
 import { CreateMenuComponent } from '../components/create-menu/create-menu';
 import { MenuComponent } from '../components/menu/menu';
+import { MenuDetailPage } from '../pages/menu-detail/menu-detail';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCMbCyfvJjjEv-cPZMiIHMqiV2Sov4ChU8",
@@ -36,6 +37,7 @@ const firebaseConfig = {
     SignUpPage,
     CreateMenuComponent,
     MenuComponent,
+    MenuDetailPage,
   ],
   imports: [
     BrowserModule,
@@ -52,6 +54,7 @@ const firebaseConfig = {
     LoginPage,
     SignUpPage,
     CreateMenuComponent,
+    MenuDetailPage,
   ],
   providers: [
     StatusBar,

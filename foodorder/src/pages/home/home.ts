@@ -39,16 +39,8 @@ export class HomePage {
   }
   
   getAllMenuKeys = () => {
-    this.firebaseProvider.getAllPublicMenuKey().subscribe(
-      (values) => {
-        this.publicMenus = values;
-      }
-    );
+    this.publicMenus = this.firebaseProvider.getAllPublicMenuKey();
     
-    this.firebaseProvider.getAllPrivateOwnerKey(this.user.uid).subscribe(
-      (values) => {
-        this.privateMenus = values;
-      }
-    );
+    this.privateMenus = this.firebaseProvider.getAllPrivateOwnerKey(this.user.uid);
   }
  }

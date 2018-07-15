@@ -3,6 +3,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { auth } from 'firebase/app';
 import { Menu } from '../../type';
+import 'rxjs/Rx';
 
 
 /*
@@ -37,25 +38,25 @@ export class FirebaseProvider {
   createCustomUser = (uid, account) => {
     const userCollection = this.firebaseDB.list('/users');
 
-    return userCollection.set(uid, 
+    return userCollection.set(uid,
       {
-        team: account['team'], 
-        location: account['location'], 
+        team: account['team'],
+        location: account['location'],
         phoneNumber: account['phoneNumber'],
       });
   }
   authUser = (account: Object) => {
     return this.afAuth.auth.signInWithEmailAndPassword(account['email'], account['password']);
   }
-  
+
   forgotPassWord = (email: string) => {
     // let user;
     return this.afAuth.auth.sendPasswordResetEmail(email);
-      
+
   }
 
   signOut = async () => {
-   await this.afAuth.auth.signOut();
+    await this.afAuth.auth.signOut();
   }
 
   getCurrentUser = () => {
@@ -76,8 +77,8 @@ export class FirebaseProvider {
   createMenu = (data: Menu) => {
     //save menu
     const menuCollection = this.firebaseDB.list('/menus').push(data);
-    
-    if(data.private === 'true') {
+
+    if (data.private === 'true') {
       return this.createPrivateMenuKey(menuCollection.key, data.uid);
     } else {
       return this.createPublicMenuKey(menuCollection.key);
@@ -92,15 +93,15 @@ export class FirebaseProvider {
   }
 
   getAllPublicMenuKey = () => {
-    return this.firebaseDB.list('/menu-public-map').valueChanges();
+    return this.firebaseDB.list('/menu-public-map').snapshotChanges();
   }
-  
+
   //TODO: get all private menu owner
   getAllPrivateOwnerKey = (uid) => {
-    return this.firebaseDB.list(`/menu-private-map/${uid}`).valueChanges();
+    return this.firebaseDB.list(`/menu-private-map/${uid}`).snapshotChanges();
   }
 
   getMenuByKey = (id) => {
-    return this.firebaseDB.list(`/menus/${id}`).valueChanges();
+    return this.firebaseDB.object(`/menus/${id}`).valueChanges();
   }
 }

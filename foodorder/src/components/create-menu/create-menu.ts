@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { FirebaseProvider } from '../../providers/firebase/firebase';
 import { LoginPage } from '../../pages/login/login';
 
@@ -19,12 +19,15 @@ export class CreateMenuComponent {
   newFieldForm: FormGroup;
   menuList: Object[];
   uid: string;
+  // menu: object;
 
   constructor(
     public navCtrl: NavController, 
     private firebaseProvider: FirebaseProvider,
     private formBuilder: FormBuilder,
+    private navParams: NavParams,
   ) {
+    
     // this.afAuth.auth.signOut(); 
     this.firebaseProvider.getCurrentUser().subscribe((user) => {
       if(!user) {
@@ -34,18 +37,34 @@ export class CreateMenuComponent {
       }
     })
 
-    this.menuForm = formBuilder.group({
+    this.menuForm = this.formBuilder.group({
       orderName: ['',  Validators.required],
       description: ['',  Validators.required],
       private: 'false',
     });
 
+    const menu = this.navParams.get('menu');
+    
     this.newFieldForm = formBuilder.group({
       foodName: ['',  Validators.required],
       price: ['',  Validators.required],
     });
 
     this.menuList = [];
+
+    if(menu) {
+      console.log(menu);
+      this.menuForm.setValue({
+        orderName: menu.orderName,
+        description: menu.description,
+        private: menu.private,
+      }, {
+        onlySelf: false,
+        emitEvent: true,
+      });
+
+      this.menuList = menu.foods;
+    }
   }
 
   createMenu = () => {
