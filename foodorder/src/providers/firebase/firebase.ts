@@ -45,6 +45,7 @@ export class FirebaseProvider {
         phoneNumber: account['phoneNumber'],
       });
   }
+
   authUser = (account: Object) => {
     return this.afAuth.auth.signInWithEmailAndPassword(account['email'], account['password']);
   }
@@ -52,7 +53,6 @@ export class FirebaseProvider {
   forgotPassWord = (email: string) => {
     // let user;
     return this.afAuth.auth.sendPasswordResetEmail(email);
-
   }
 
   signOut = async () => {
@@ -81,11 +81,11 @@ export class FirebaseProvider {
     if (data.private === 'true') {
       return this.createPrivateMenuKey(menuCollection.key, data.uid);
     } else {
-      return this.createPublicMenuKey(menuCollection.key);
+      return this.createPublicMenuKey(menuCollection.key, data.uid);
     }
   }
-  createPublicMenuKey = (key) => {
-    return this.firebaseDB.object(`/menu-public-map/${key}`).set(true);
+  createPublicMenuKey = (key, uid) => {
+    return this.firebaseDB.object(`/menu-public-map/${uid}/${key}`).set(true);
   }
 
   createPrivateMenuKey = (key, uid) => {
@@ -93,7 +93,11 @@ export class FirebaseProvider {
   }
 
   getAllPublicMenuKey = () => {
-    return this.firebaseDB.list('/menu-public-map').snapshotChanges();
+    return this.firebaseDB.list('/menu-public-map').valueChanges();
+  }
+
+  getAllOwnerPublicMenuKey = (uid) => {
+    return this.firebaseDB.list(`/menu-public-map/${uid}`).snapshotChanges();
   }
 
   //TODO: get all private menu owner

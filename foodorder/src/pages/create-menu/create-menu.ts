@@ -1,21 +1,22 @@
 import { Component } from '@angular/core';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { NavController, NavParams } from 'ionic-angular';
 import { FirebaseProvider } from '../../providers/firebase/firebase';
 import { LoginPage } from '../../pages/login/login';
 import { Menu } from '../../type';
-
 /**
- * Generated class for the CreateMenuComponent component.
+ * Generated class for the CreateMenuPage page.
  *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
  */
+
+@IonicPage()
 @Component({
-  selector: 'create-menu',
-  templateUrl: 'create-menu.html'
+  selector: 'page-create-menu',
+  templateUrl: 'create-menu.html',
 })
-export class CreateMenuComponent {
+export class CreateMenuPage {
   menuForm: FormGroup;
   newFieldForm: FormGroup;
   menuList: Object[];
@@ -120,4 +121,5 @@ export class CreateMenuComponent {
       this.newFieldForm.reset('');
     }
   }
+
 }

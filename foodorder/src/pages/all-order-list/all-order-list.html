@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>All Orders</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content class="cards-bg">
+  <div class="card-background-page" *ngFor="let item of publicMenus">
+    <menu [key]="item"></menu>
+  </div>
+  <div class="card-background-page" *ngFor="let item of privateMenus | async">
+    <menu [key]="item.key"></menu>
+  </div>
+  <ion-fab right bottom>
+    <button ion-fab color="danger"  (click)="createMenu()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+</ion-content>

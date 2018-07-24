@@ -14,9 +14,12 @@ import { ResetPasswordComponent } from '../components/reset-password/reset-passw
 import { LoginPage } from '../pages/login/login';
 import { SignOutComponent } from '../components/sign-out/sign-out';
 import { SignUpPage } from '../pages/sign-up/sign-up';
-import { CreateMenuComponent } from '../components/create-menu/create-menu';
+// import { CreateMenuComponent } from '../components/create-menu/create-menu';
 import { MenuComponent } from '../components/menu/menu';
 import { MenuDetailPage } from '../pages/menu-detail/menu-detail';
+import { AllOrderListPage } from '../pages/all-order-list/all-order-list';
+import { YourOrderListPage } from '../pages/your-order-list/your-order-list';
+import { CreateMenuPage } from '../pages/create-menu/create-menu';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCMbCyfvJjjEv-cPZMiIHMqiV2Sov4ChU8",
@@ -35,13 +38,23 @@ const firebaseConfig = {
     LoginPage,
     SignOutComponent,
     SignUpPage,
-    CreateMenuComponent,
+    CreateMenuPage,
     MenuComponent,
     MenuDetailPage,
+    AllOrderListPage,
+    YourOrderListPage,
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp, {
+      tabsHideOnSubPages: true,
+      menuType: 'push',
+      platforms: {
+        ios: {
+          menuType: 'overlay',
+        }
+      }
+    }),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
@@ -53,8 +66,10 @@ const firebaseConfig = {
     ResetPasswordComponent,
     LoginPage,
     SignUpPage,
-    CreateMenuComponent,
+    CreateMenuPage,
     MenuDetailPage,
+    AllOrderListPage,
+    YourOrderListPage,
   ],
   providers: [
     StatusBar,

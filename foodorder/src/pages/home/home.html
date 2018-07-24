@@ -1,5 +1,32 @@
 <ion-header>
   <ion-navbar>
+    <button ion-button menuToggle icon-only>
+      <ion-icon name='menu'></ion-icon>
+    </button>
+    <ion-title>
+      Menus
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <button ion-button block menuToggle>Toggle Menu</button>
+</ion-content>
+
+<ion-menu [content]="mycontent">
+  <ion-content>
+    <ion-list>
+      <ion-item menuClose detail-none>Close Menu</ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+  
+<!-- <ion-tabs>
+  <ion-tab tabIcon="contact" [root]="allOrder"></ion-tab>
+  <ion-tab tabIcon="compass" [root]="yourOrder"></ion-tab>
+</ion-tabs> -->
+<!-- 
+<ion-header>
+  <ion-navbar>
     <ion-buttons>LaLa 
         <ion-nav id="nav" #content [root]="rootPage">
         </ion-nav>
@@ -37,13 +64,10 @@
   <div class="card-background-page" *ngFor="let item of publicMenus | async">
     <menu [key]="item.key"></menu>
   </div>
-  <!-- <pre>{{publicMenus | async | json}}</pre> -->
-
   <div class="card-background-page" *ngFor="let item of privateMenus | async">
     <menu [key]="item.key"></menu>
   </div>
-  <!-- <pre>{{privateMenus | async | json}}</pre> -->
   <ion-fab right bottom>
     <button ion-fab color="danger"  (click)="createMenu()"><ion-icon name="add"></ion-icon></button>
   </ion-fab>
-</ion-content>
+</ion-content> -->
