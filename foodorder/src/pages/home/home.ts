@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, MenuController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { FirebaseProvider } from '../../providers/firebase/firebase';
 import { CreateMenuComponent } from '../../components/create-menu/create-menu';
@@ -19,6 +19,7 @@ export class HomePage {
   constructor(
     public navCtrl: NavController, 
     private firebaseProvider: FirebaseProvider,
+    public menuCtrl: MenuController,
   ) {
     // this.afAuth.auth.signOut(); 
     this.firebaseProvider.getCurrentUser().subscribe((user) => {
@@ -43,4 +44,8 @@ export class HomePage {
     
     this.privateMenus = this.firebaseProvider.getAllPrivateOwnerKey(this.user.uid);
   }
- }
+
+  openMenu() {
+    this.menuCtrl.open();
+  }
+}
