@@ -31,8 +31,10 @@ export class MenuComponent {
 
   ngOnChanges() {
     this.firebaseProvider.getMenuByKey(this._key).subscribe(
-      (value) => {
-        this.menu = value;
+      (value) => { 
+
+        this.menu = {...value, id: this._key};
+        console.log(this._key, value);
       }
     );
   }

@@ -59,7 +59,6 @@
   </ion-content>
 </ion-menu>
   
-<ion-content class="cards-bg">
   <div *ngIf="user">Hello, {{user.displayName}}</div>
   <div class="card-background-page" *ngFor="let item of publicMenus | async">
     <menu [key]="item.key"></menu>

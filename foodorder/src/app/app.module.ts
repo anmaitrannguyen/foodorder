@@ -70,6 +70,7 @@ const firebaseConfig = {
     MenuDetailPage,
     AllOrderListPage,
     YourOrderListPage,
+    SignOutComponent,
   ],
   providers: [
     StatusBar,

@@ -53,7 +53,7 @@ export class CreateMenuComponent {
 
     this.menuList = [];
 
-    if(this.menu && Array.isArray(this.menu)) {
+    if(this.menu && Object.keys(this.menu).length) {
       this.menuList = this.menu.foods;
     }
   }
@@ -62,16 +62,16 @@ export class CreateMenuComponent {
     if(this.menuForm.valid && this.uid) {
       const sendData = {...this.menuForm.value, foods: this.menuList, uid: this.uid};
 
-      if(this.menu && Array.isArray(this.menu)) {
+      if(this.menu && Object.keys(this.menu).length) {
         const changedMode = this.menu.private !== this.menuForm.value.private;
 
         if(changedMode) {
           if(sendData.private === 'false') {
           this.firebaseProvider.removePrivateMenuOwnerByKey(sendData.uid, this.menu.id).then(
             () => {
-              this.firebaseProvider.createPrivateMenuKey( this.menu.id, sendData.uid).then(
+              this.firebaseProvider.createPublicMenuKey(this.menu.id, this.uid).then(
                 (res) => {
-                  console.log(res);
+                  this.updateData(sendData, changedMode);
                 }
               );
             } 
@@ -83,7 +83,7 @@ export class CreateMenuComponent {
               () => {
               this.firebaseProvider.removePublicMenuByKey(this.menu.id).then(
                 (res) => {
-                  console.log(res);
+                  this.updateData(sendData, changedMode);
                 }
               );
             }
@@ -94,15 +94,7 @@ export class CreateMenuComponent {
 
         } else {
           //update data
-        this.firebaseProvider.updateMenuByKey(
-          this.menu.id, 
-          sendData,
-          changedMode
-        ).then(
-          (res) => console.log(res)
-        ).catch(
-          (e) => console.log(e)
-        )
+          this.updateData(sendData, changedMode);
         }
       } else {
         this.firebaseProvider.createMenu(
@@ -114,8 +106,21 @@ export class CreateMenuComponent {
     }
   }
 
+  updateData = (sendData, changedMode) => {
+    this.firebaseProvider.updateMenuByKey(
+      this.menu.id, 
+      sendData,
+      changedMode
+    ).then(
+      (res) => this.navCtrl.pop()
+    ).catch(
+      (e) => console.log(e)
+    )
+  }
+
   addField = () => {
     if(this.newFieldForm.valid) {
+      this.menuList? null : this.menuList = [];
       this.menuList.push(this.newFieldForm.value);
       this.newFieldForm.reset('');
     }
